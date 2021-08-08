@@ -15,7 +15,7 @@ Nodes:
     ApiConfig:
       ApiHost: "https://p.fktw.cc"
       ApiKey: "fktwccfiadigifrank"
-      NodeID: 11
+      NodeID: 12
       NodeType: Trojan # Node type: V2ray, Shadowsocks, Trojan
       Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
@@ -39,7 +39,7 @@ Nodes:
           ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
       CertConfig:
         CertMode: dns # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
-        CertDomain: "i2h3g4.uds-global.com" # Domain to cert
+        CertDomain: "dock543.uds-global.net" # Domain to cert
         CertFile: ./cert/node1.test.com.cert # Provided if the CertMode is file
         KeyFile: ./cert/node1.test.com.key
         Provider: cloudflare # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
