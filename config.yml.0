@@ -33,7 +33,7 @@ Nodes:
       EnableFallback: false # Only support for Trojan and Vless
       FallBackConfigs:  # Support multiple fallbacks
         -
-          SNI: f1f2f3.fiacloud.com # TLS SNI(Server Name Indication), Empty for any
+          SNI: dock978.uds-global.net # TLS SNI(Server Name Indication), Empty for any
           Path: # HTTP PATH, Empty for any
           Dest: 80 # Required, Destination of fallback, check https://xtls.github.io/config/fallback/ for details.
           ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
