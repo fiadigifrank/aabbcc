@@ -15,7 +15,7 @@ Nodes:
     ApiConfig:
       ApiHost: "https://in.fktw.cc"
       ApiKey: "fktwccfiadigifrank"
-      NodeID: 12
+      NodeID: 13
       NodeType: V2ray # Node type: V2ray, Shadowsocks, Trojan
       Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
@@ -33,13 +33,13 @@ Nodes:
       EnableFallback: false # Only support for Trojan and Vless
       FallBackConfigs:  # Support multiple fallbacks
         -
-          SNI: jingdock.uds-global.net # TLS SNI(Server Name Indication), Empty for any
+          SNI: jamei010.uds-global.net # TLS SNI(Server Name Indication), Empty for any
           Path: # HTTP PATH, Empty for any
           Dest: 80 # Required, Destination of fallback, check https://xtls.github.io/config/fallback/ for details.
           ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
       CertConfig:
         CertMode: dns # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
-        CertDomain: "jingdock.uds-global.net" # Domain to cert
+        CertDomain: "jamei010.uds-global.net" # Domain to cert
         CertFile: ./cert/node1.test.com.cert # Provided if the CertMode is file
         KeyFile: ./cert/node1.test.com.key
         Provider: cloudflare # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
