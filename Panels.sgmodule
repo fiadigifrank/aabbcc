@@ -23,4 +23,4 @@ NET_info = type=generic,timeout=10,script-path=https://raw.githubusercontent.com
 
 #机场信息
 #必须修改的字段:你encode后的机场订阅链接
-Sub_info = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/mieqq/mieqq/master/sub_info_panel.js ,script-update-interval=0,argument=url=aHR0cHM6Ly9pbi5ma3R3LmNjL2FwaS92MS9jbGllbnQvc3Vic2NyaWJlP3Rva2VuPWNlY2FkZWNkMWJiMDdkZmNkYTE1YjdiOTVlMjk0NWZj&reset_day=1&title=title=ExFlux&icon=opticaldisc&color=#5AC8FA
+Sub_info = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/mieqq/mieqq/master/sub_info_panel.js ,script-update-interval=0,argument=url=https%3A%2F%2Fin.fktw.cc%2Fapi%2Fv1%2Fclient%2Fsubscribe%3Ftoken%3Dcecadecd1bb07dfcda15b7b95e2945fc&reset_day=1&title=title=ExFlux&icon=opticaldisc&color=#5AC8FA
