@@ -225,7 +225,7 @@ ConnetionConfig:
   BufferSize: 64 # The internal cache size of each connection, kB 
 Nodes:
   -
-    PanelType: "SSpanel" # Panel type: SSpanel, V2board, PMpanel
+    PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel
     ApiConfig:
       ApiHost: "${ApiHost}"
       ApiKey: "${ApiKey}"
