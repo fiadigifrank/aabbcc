@@ -290,12 +290,13 @@ stream {
     server {
         listen              443 ssl; listen 2053 ssl;      # 设置监听端口为443
 
-        ssl_protocols      TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+        ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
 
         ssl_certificate /etc/nginx/cert/${domain}/fullchain.pem; # 证书地址
         ssl_certificate_key /etc/nginx/cert/${domain}/key.key; # 秘钥地址
         ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
                                                         # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
         ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
         proxy_protocol    on; # 开启proxy_protocol获取真实ip
         proxy_pass        127.0.0.1:${XrayR_port}; 
@@ -310,7 +311,7 @@ http {
 	types_hash_max_size 2048;
 	include /etc/nginx/mime.types;
 	default_type application/octet-stream;
-	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
+	ssl_protocols TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
 	ssl_prefer_server_ciphers on;
 	gzip on;
 	include /etc/nginx/conf.d/*.conf;
