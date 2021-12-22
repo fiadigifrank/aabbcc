@@ -342,5 +342,4 @@ bash <(curl -L -s https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/maste
     echo "XrayR uninstall          - 卸载 XrayR"
     echo "XrayR version            - 查看 XrayR 版本"
     echo "------------------------------------------"
-    echo "Available ports:443,xxxx"
-
+    echo "Available ports:443,2053"
