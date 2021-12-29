@@ -1,4 +1,4 @@
-#!name=Ali DoH
+#!name=Fia DoH
 #!desc=Enable DNS over HTTPS (DoH) with Fia DNS.
 
 [General]
