@@ -288,7 +288,7 @@ events {
 
 stream {
     server {
-        listen              443 ssl; listen 2053 ssl;      # 设置监听端口为443
+        listen              443 ssl; listen 22053 ssl;      # 设置监听端口为443&22053
 
         ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
 
@@ -342,4 +342,4 @@ bash <(curl -L -s https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/maste
     echo "XrayR uninstall          - 卸载 XrayR"
     echo "XrayR version            - 查看 XrayR 版本"
     echo "------------------------------------------"
-    echo "Available ports:443,2053"
+    echo "Available ports:443,22053"
