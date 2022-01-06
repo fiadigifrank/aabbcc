@@ -290,7 +290,7 @@ stream {
     server {
         listen              443 ssl; listen 22053 ssl;      # 设置监听端口为443&22053
 
-        ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+        ssl_protocols      TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
 
         ssl_certificate /etc/nginx/cert/${domain}/fullchain.pem; # 证书地址
         ssl_certificate_key /etc/nginx/cert/${domain}/key.key; # 秘钥地址
@@ -311,7 +311,7 @@ http {
 	types_hash_max_size 2048;
 	include /etc/nginx/mime.types;
 	default_type application/octet-stream;
-	ssl_protocols TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
 	ssl_prefer_server_ciphers on;
 	gzip on;
 	include /etc/nginx/conf.d/*.conf;
