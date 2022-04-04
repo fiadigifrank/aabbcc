@@ -1,0 +1,661 @@
+load_module modules/ngx_stream_module.so;
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+	worker_connections 768;
+	multi_accept on;
+}
+stream {
+#  upstream us-node {
+#      server 127.0.0.1:38081;
+#      server nd-us-sjc-2735.spdio.xyz:20053;
+#     server nd-us-sjc-2734.spdio.xyz:22053;
+#     server nd-us-sjc-2735.spdio.xyz:22053;
+#     server nd-us-phx-2736.spdio.xyz:22053;
+#}
+    server { 
+    # US 圣何塞 | ARM | 中转
+       listen 48001 ssl;
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_ssl_server_name on;
+       proxy_protocol   on;
+#       proxy_pass     us-node;
+       proxy_pass        127.0.0.1:38080;
+     }  
+    server {  
+    # US 圣何塞 | AMD | 中转
+       listen 48002 ssl;
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38081;
+    }
+    server {
+       listen 48003 ssl;
+       # US 凤凰城 | ARM | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38082;
+   }
+   server {
+       listen 48004 ssl;
+       # US 凤凰城 | AMD | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38083;
+   }
+   server {
+       listen 48005 ssl;
+       # US 阿什本 | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38084;
+   }
+   server {
+       listen 48006 ssl;
+       # SGP 新加坡 01 | ARM | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38085;
+   }
+   server {
+       listen 48007 ssl;
+       # SGP 新加坡 02 | ARM | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38086;
+   }
+   server {
+       listen 48008 ssl;
+       # KR 首尔 | AMD | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38087;
+   }
+   server {
+       listen 48009 ssl;
+       # KR 首尔 | ARM | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38088;
+   }
+   server {
+       listen 48010 ssl;
+       # 东京 | ARM | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38089;
+   }
+   server {
+       listen 48011 ssl;
+       # 东京 | AMD | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38090;
+   }
+   server {
+       listen 48012 ssl;
+       # 大阪 | AMD | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38091;
+   }
+   server {
+       listen 48013 ssl;
+       # AU 悉尼 | ARM | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38092;
+   }
+   server {
+       listen 48014 ssl;
+       # UK 伦敦 | ARM | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38093;
+   }
+   server {
+       listen 48015 ssl;
+       # DE 法兰克福 | ARM | 中转
+       ssl_protocols      TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+       ssl_certificate /root/bgp6899/cert.crt; # 证书地址
+       ssl_certificate_key /root/bgp6899/private.key; # 秘钥地址
+       ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+       ssl_session_timeout 10m;
+       proxy_protocol   on;
+       proxy_pass        127.0.0.1:38094;
+   }
+}
+
+http {
+ upstream USV2 {
+       ip_hash;
+       server 150.230.36.45:3443;  #V1 - US 圣何塞 | AMD (thebest)
+       server 129.146.85.29:3443;  #V1 - US 凤凰城 | AMD (frankcu)
+       server 152.70.112.43:3443 weight=2;  #V2 - US 圣何塞 | ARM (kangfuora)
+       server 152.70.155.189:3443 weight=1;  #V2 - US 凤凰城 | ARM (frankcu)
+       server 129.213.119.162:3443;  #V2 - US 阿什本 | ARM (fkufku)
+       server 192.9.234.48:3443 weight=3; #V2- US 圣何塞 | E4(thebest)
+       check interval=5000 rise=2 fall=2 timeout=3000 type=tcp;
+  }
+ upstream SGPV2 {
+       ip_hash;
+       server 168.138.170.160:3443;  #V2 - SGP 新加坡 01 | ARM (jenmei)
+       server 168.138.163.102:13443;  #V2 - SGP 新加坡 02 | ARM (tonxin)
+       server 168.138.162.211:13443; #V2 - SGP 新加坡 03 | ARM (jenmei) ADGH
+       check interval=5000 rise=2 fall=2 timeout=3000 type=tcp;
+  }
+ upstream KRV2 {
+       ip_hash;
+       server 152.70.251.90:3443;   #V1 - KR 首尔 | AMD(hexin)
+       server 132.226.23.92:3443 weight=3;  #V2 - KR 首尔 | arm(hexin)
+       server 152.67.218.214:3443 weight=5; #V2 - KR 春川 01 | ARM(linkowinnie)
+       server 152.67.205.113:3443 weight=5; #V2 - KR 春川 02 | ARM(fiadigi)unifi
+       check interval=5000 rise=2 fall=2 timeout=3000 type=tcp;
+  }
+ upstream JPV2 {
+       ip_hash;
+       server 152.70.99.159:3443 weight=2;  #V1 - JP 东京 | AMD(frankicloud)
+       server 140.83.85.191:3443;  #V1 - JP 大阪 | AMD(fiaworld)
+       server 150.230.193.65:3443 weight=3;  #V2 - JP 东京 | ARM(frankicloud)
+       server 140.83.60.3:3443 weight=3;  #V2 - JP 东京 | ARM(fiaworld)
+       check interval=5000 rise=2 fall=2 timeout=3000 type=tcp;
+  }
+ upstream AUV2 {
+       server 140.238.203.216:3443;  #V2 - AU 悉尼 | ARM(kuceo)
+       check interval=5000 rise=2 fall=2 timeout=3000 type=tcp; 
+  }
+ upstream UKV2 {
+       server 132.145.23.119:3443;  #V2 - UK 伦敦 | ARM(jgfk)
+       check interval=5000 rise=2 fall=2 timeout=3000 type=tcp;
+  }
+ upstream DEV2 {
+       server 130.61.81.172:3443;  #V2 - DE 法兰克福 | ARM(fiajack)
+       check interval=5000 rise=2 fall=2 timeout=3000 type=tcp;
+  }
+upstream NLV2 {
+       server 144.21.36.179:3443;  #V2 - NL 阿姆斯特丹 | ARM(chengxiora)
+       check interval=5000 rise=2 fall=2 timeout=3000 type=tcp;
+  }
+upstream INDV2 {
+       server 146.56.48.15:3443;  #V2 - IND 孟買 | ARM(kangqao)
+       check interval=5000 rise=2 fall=2 timeout=3000 type=tcp;
+  }
+upstream UAEV2 {
+       server 193.123.94.154:3443;  #V2 - UAE 迪拜 | ARM (qingsen)
+       check interval=5000 rise=2 fall=2 timeout=3000 type=tcp;
+  }
+upstream BRV2 {
+       server 144.22.139.111:3443;  #V2 - BR 巴西-圣保罗 | ARM(fongshdent)
+       check interval=5000 rise=2 fall=2 timeout=3000 type=tcp;
+  }
+upstream ZAV2 {
+       server 129.151.169.12:3443;  #V2 - ZA 南非-約翰尼斯堡 | ARM(jasonno1)
+       check interval=5000 rise=2 fall=2 timeout=3000 type=tcp;
+  }
+    server {
+        # OracleNode USV2
+        listen            58011 ssl;
+        server_name bgplboranode.spdio.xyz;
+        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+        ssl_prefer_server_ciphers    on;
+        location / {
+           proxy_pass       http://USV2;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+           proxy_set_header Host $http_host;
+           proxy_redirect off;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for;        
+        }
+    }
+    server {
+        # OracleNode SGPV2
+        listen            58021 ssl;
+        server_name bgplboranode.spdio.xyz;
+        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+        ssl_prefer_server_ciphers    on;
+        location / {
+           proxy_pass       http://SGPV2;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+           proxy_set_header Host $http_host;
+           proxy_redirect off;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }	
+#    server {
+        # OracleNode KRV1
+#        listen            58031 ssl;
+#        server_name bgplboranode.spdio.xyz;
+#        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+#        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+#        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+#        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+#        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+#        ssl_prefer_server_ciphers    on;
+#        location / {
+#           proxy_pass       http://KRV1;
+#           proxy_http_version 1.1;
+#           proxy_set_header Upgrade $http_upgrade;
+#           proxy_set_header Connection "upgrade";
+#           proxy_set_header Host $http_host;
+#           proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+#           proxy_redirect off;
+#           proxy_set_header X-Real-IP $remote_addr;
+#        }
+#    }   
+    server {
+        # OracleNode KRV2
+        listen            58041 ssl;
+        server_name bgplboranode.spdio.xyz;
+        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+        ssl_prefer_server_ciphers    on;
+        location / {
+           proxy_pass       http://KRV2;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+           proxy_set_header Host $http_host;
+           proxy_redirect off;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }   
+#    server {
+        # OracleNode JPV1
+#        listen            58051 ssl;
+#        server_name bgplboranode.spdio.xyz;
+#        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+#        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+#        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+#        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+#        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+#        ssl_prefer_server_ciphers    on;
+#        location / {
+#           proxy_pass       http://JPV1;
+#           proxy_http_version 1.1;
+#           proxy_set_header Upgrade $http_upgrade;
+#           proxy_set_header Connection "upgrade";
+#           proxy_set_header Host $http_host;
+#           proxy_redirect off;
+#           proxy_set_header X-Real-IP $remote_addr;
+#           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for; 
+#        }
+#    }   
+    server {
+        # OracleNode JPV2
+        listen            58061 ssl;
+        server_name bgplboranode.spdio.xyz;
+        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+        ssl_prefer_server_ciphers    on;
+        location / {
+           proxy_pass       http://JPV2;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+           proxy_set_header Host $http_host;
+           proxy_redirect off;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+    server {
+        # OracleNode AUV2
+        listen            58071 ssl;
+        server_name bgplboranode.spdio.xyz;
+        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+        ssl_prefer_server_ciphers    on;
+        location / {
+           proxy_pass       http://AUV2;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+           proxy_set_header Host $http_host;
+           proxy_redirect off;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+    server {
+        # OracleNode UKV2
+        listen            58081 ssl;
+        server_name bgplboranode.spdio.xyz;
+        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+        ssl_prefer_server_ciphers    on;
+        location / {
+           proxy_pass       http://UKV2;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+           proxy_set_header Host $http_host;
+           proxy_redirect off;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+    server {
+        # OracleNode DEV2
+        listen            58091 ssl;
+        server_name bgplboranode.spdio.xyz;
+        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+        ssl_prefer_server_ciphers    on;
+        location / {
+           proxy_pass       http://DEV2;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+           proxy_set_header Host $http_host;
+           proxy_redirect off;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+    server {
+        # OracleNode NLV2
+        listen            58101 ssl;
+        server_name bgplboranode.spdio.xyz;
+        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+        ssl_prefer_server_ciphers    on;
+        location / {
+           proxy_pass       http://NLV2;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+           proxy_set_header Host $http_host;
+           proxy_redirect off;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+    server {
+        # OracleNode INDV2
+        listen            58111 ssl;
+        server_name bgplboranode.spdio.xyz;
+        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+        ssl_prefer_server_ciphers    on;
+        location / {
+           proxy_pass       http://INDV2;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+           proxy_set_header Host $http_host;
+           proxy_redirect off;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+    server {
+        # OracleNode UAEV2
+        listen            58121 ssl;
+        server_name bgplboranode.spdio.xyz;
+        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+        ssl_prefer_server_ciphers    on;
+        location / {
+           proxy_pass       http://UAEV2;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+           proxy_set_header Host $http_host;
+           proxy_redirect off;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+    server {
+        # OracleNode BRV2
+        listen            58131 ssl;
+        server_name bgplboranode.spdio.xyz;
+        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+        ssl_prefer_server_ciphers    on;
+        location / {
+           proxy_pass       http://BRV2;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+           proxy_set_header Host $http_host;
+           proxy_redirect off;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+    server {
+        # OracleNode ZAV2
+        listen            58141 ssl;
+        server_name bgplboranode.spdio.xyz;
+        ssl_protocols    TLSv1.2 TLSv1.3;      # 设置使用的SSL协议版本
+
+        ssl_certificate /root/bgplboranode.spdio.xyz/cert.crt; # 证书地址
+        ssl_certificate_key /root/bgplboranode.spdio.xyz/private.key; # 秘钥地址
+#        ssl_session_cache   shared:SSL:10m;             # SSL TCP会话缓存设置共享内存区域名为
+                                                        # SSL，区域大小为10MB
+        ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305;
+        ssl_session_timeout 10m;                        # SSL TCP会话缓存超时时间为10分钟
+#        proxy_protocol    on; # 开启proxy_protocol获取真实ip
+        ssl_prefer_server_ciphers    on;
+        location / {
+           proxy_pass       http://ZAV2;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+           proxy_set_header Host $http_host;
+           proxy_redirect off;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header x-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+        sendfile on;
+	tcp_nopush on;
+	types_hash_max_size 2048;
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+	ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
+	ssl_prefer_server_ciphers on;
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
+	gzip on;
+	include /etc/nginx/conf.d/*.conf;
+	include /etc/nginx/sites-enabled/*;
+}
