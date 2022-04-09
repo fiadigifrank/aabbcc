@@ -1,3 +1,5 @@
 xrayr_config.yml
 Nginx_LB_OracleNode.conf
 Nginx_LB_TWNode.conf
+nbnodeyyds-cert.crt
+nbnodeyyds-private.key
