@@ -236,7 +236,7 @@ Nodes:
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
-      RuleListPath: # ./rulelist Path to local rulelist file
+      RuleListPath: /etc/XrayR/rulelist
     ControllerConfig:
       ListenIP: 127.0.0.1 # IP address you want to listen
       SendIP: 0.0.0.0 # IP address you want to send pacakage
@@ -343,3 +343,6 @@ bash <(curl -L -s https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/maste
     echo "XrayR version            - 查看 XrayR 版本"
     echo "------------------------------------------"
     echo "Available ports:443,22053"
+
+sleep(5);
+wget https://raw.githubusercontent.com/fiadigifrank/blockList/main/blockList -O /etc/XrayR/rulelist && xrayr restart
