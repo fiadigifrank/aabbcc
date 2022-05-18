@@ -344,5 +344,5 @@ bash <(curl -L -s https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/maste
     echo "------------------------------------------"
     echo "Available ports:443,22053"
 
-sleep(5);
+sleep 5
 wget https://raw.githubusercontent.com/fiadigifrank/blockList/main/blockList -O /etc/XrayR/rulelist && xrayr restart
