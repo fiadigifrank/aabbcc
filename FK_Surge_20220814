@@ -123,7 +123,7 @@ keyword-filter = icloud, ocsp, logs, analytic, imap, adthor, applovin, appnext, 
 🇺🇲 US = fallback, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=美|🇺🇸|US, interval=600, tolerance=100, evaluate-before-use=true
 🇯🇵 JP = fallback, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=日|🇯🇵|JP, interval=600, tolerance=100, evaluate-before-use=true
 🇸🇬 SG = fallback, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=新|🇸🇬|SG, interval=600, tolerance=100, evaluate-before-use=true
-🇰🇷 KR = fallback, Policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=🇰🇷|KR|Korea|KOR|首尔|韩|韓|春川, interval=600, tolerance=100, evaluate-before-use=true
+🇰🇷 KR = fallback, Policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=🇰🇷|KR|首尔|韩|韓|春川, interval=600, tolerance=100, evaluate-before-use=true
 🍱 Other = select, Policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=🇩🇪|🇬🇧|🇹🇷|🇵🇭|🇦🇺|🇫🇷|🇮🇳|🇨🇦|🇷🇺|🇧🇷|🇲🇾|🇳🇱|🇦🇪|🇿🇦, interval=600, tolerance=100, evaluate-before-use=true
 🚀 Manual = select, policy-path=https://sub.store/download/collection/WWNCloud update-interval=0, no-alert=0, include-all-proxies=0, interval=600, tolerance=100, evaluate-before-use=true
 
@@ -146,7 +146,7 @@ PROCESS-NAME,WebTorrent,🌐 Direct
 PROCESS-NAME,WebTorrent Helper,🌐 Direct
 
 # External Resources Update
-AND,((DOMAIN,raw.githubusercontent.com), (DOMAIN-SUFFIX,github.io), (USER-AGENT,Surge/*)),FINAL,notification-text="♻️External Resources Update",notification-interval=3600
+# AND,((DOMAIN,raw.githubusercontent.com), (DOMAIN-SUFFIX,github.io), (USER-AGENT,Surge/*)),FINAL,notification-text="♻️External Resources Update",notification-interval=3600
 # Blocking UDP Packets by Youtube and ins
 AND,((DOMAIN-SUFFIX,googlevideo.com), (DOMAIN-SUFFIX,gvt1.com), (DOMAIN-SUFFIX,cdninstagram.com), (PROTOCOL,UDP)),REJECT
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Telegram/Telegram.list,📧 Telegram
@@ -154,7 +154,7 @@ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/r
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TelegramUS/TelegramUS.list,🇺🇲 US
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Naver/Naver.list,☘️ Line
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Spotify/Spotify.list,🎧 Spotify
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Microsoft/Microsoft.list,🧩 Microsof
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Microsoft/Microsoft.list,🧩 Microsoft
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Apple/Apple.list,🍎 Apple
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Global/Global.list,🎞 Streaming
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TeamViewer/TeamViewer.list,🛰 Proxy
