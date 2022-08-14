@@ -1,0 +1,178 @@
+
+[General]
+# --- GENERAL ---
+# Enhanced Wi-Fi Assist
+wifi-assist = false
+# Hybrid Network
+all-hybrid = true
+
+# Latency Benchmark
+internet-test-url = http://g.alicdn.com/generate_204
+proxy-test-url = http://cp.cloudflare.com/generate_204
+test-timeout = 5
+
+# GeoIP Database
+geoip-maxmind-url = https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb
+
+# IPv6 Support
+ipv6 = true
+
+# --- Wi-Fi ACCESS ---
+//若允许远程访问将 <false> 改为 <true>,仅 iOS
+allow-wifi-access = false
+allow-hotspot-access = true //无限热点代理
+wifi-access-http-port = 6152
+wifi-access-socks5-port = 6153
+
+//若允许远程访问将 <127.0.0.1> 改为 <0.0.0.0>,仅 macOS
+http-listen = 127.0.0.1:6152
+socks5-listen = 127.0.0.1:6153
+
+# --- REMOTE CONTROLLER ---
+# Remote Controller
+external-controller-access = key@127.0.0.1:8888
+
+# HTTP API & Web Dashboard
+//This option allows using HTTP APIs to control
+http-api = key@0.0.0.0:6166
+//使用 HTTPS 替代 HTTP 协议，需要先配置 MitM 的 CA 证书，同时需要在客户端设备上手动安装并信任 CA 证书。
+http-api-tls = false
+//开启该选项后可以通过浏览器控制 Surge，本机浏览器输入127.0.0.1:6166
+http-api-web-dashboard = true
+
+# --- COMPATIBILITY ---
+# 兼容模式
+compatibility-mode = False
+# 跳过代理
+skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, passenger.t3go.cn, localhost, *.local
+# 排除简单主机名
+exclude-simple-hostnames = true
+
+# --- DNS ---
+# The IP addresses of upstream DNS servers
+dns-server = 223.5.5.5, 119.29.29.29, 8.8.8.8, system
+# 从 /etc/hosts 读取 DNS 记录
+read-etc-hosts = true
+# The URL of the DNS-over-HTTPS server
+//doh-server = https://doh.pub/dns-query //DNSPod
+# DoH 请求通过代理策略执行
+doh-follow-outbound-mode = false
+
+# --- ROUTING ---
+# 包含所有网络请求
+include-all-networks = false
+# 包含本地网络请求
+include-local-networks = false
+
+# --- ADVANCED ---
+# Log Level
+loglevel = notify
+# 当遇到 REJECT 策略时返回错误页
+show-error-page-for-reject = true
+# Always Real IP Hosts
+always-real-ip = link-ip.nextdns.io, *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.logon.battlenet.com.cn, *.logon.battle.net, stun.l.google.com
+# Hijack DNS
+hijack-dns = 8.8.8.8:53, 8.8.4.4:53
+# TCP Force HTTP Hosts
+force-http-engine-hosts = *.ott.cibntv.net, 123.59.31.1,119.18.193.135, 122.14.246.33, 175.102.178.52, 116.253.24.*, 175.6.26.*, 220.169.153.*
+# VIF Excluded Routes
+//tun-excluded-routes = 239.255.255.250/32
+# VIF Included Routes
+//tun-included-routes = 192.168.1.12/32
+# 当 Wi-Fi 不是首选网络时 SSID 组策略使用默认策略
+use-default-policy-if-wifi-not-primary = false
+
+# 控制当 UDP 流量被匹配到一个不支持 UDP 转发的策略时的行为
+#   - DIRECT：回退到 DIRECT 策略（默认）
+#   - REJECT：回退到 REJECT 策略
+udp-policy-not-supported-behaviour = REJECT
+
+[Replica]
+# 抓取流量 => 过滤器 1为开启，0为关闭
+# 隐藏 Apple 请求
+hide-apple-request = 1
+# 隐藏 Crashlytics 请求
+hide-crash-reporter-request = 1
+# 隐藏 UDP 会话
+hide-udp = 1
+# 关键词过滤器
+//none（关闭关键词过滤器） / whitelist（仅记录包含关键词的请求） / blacklist（仅记录不包含关键词的请求） / pattern（记录匹配通配符的请求）
+keyword-filter-type = blacklist
+keyword-filter = icloud, ocsp, logs, analytic, imap, adthor, applovin, appnext, talk, dropbox, github, spys, nexdns, 149.154, 91.108
+
+[Proxy]
+🌐 Direct = direct
+
+[Proxy Group]
+# > 策略组（下面的节点信息需与外部节点对应，若删除了外部节点里的节点，那么在策略组里也要删除。）
+♻️ Manual = select, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
+🛰 Proxy = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
+🎞 Streaming = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
+📧 Telegram = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
+☘️ Line = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
+🎧 Spotify = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
+🎥 Netflix = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
+🍎 Apple = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
+🧩 Microsoft = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
+🇨🇳 Domestic = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
+🐟 Final = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
+
+# > 外部节点
+#🇭🇰 香港节点 = fallback, policy-path=订阅地址, update-interval=0, policy-regex-filter=港|🇭🇰|Hong
+🇹🇼 TW = select, policy-path=https://gist.githubusercontent.com/fiadigifrank/1b53283024ca8b3d8253c34107a7dc15/raw/FKSurge, update-interval=0, policy-regex-filter=台|🇹🇼|新北|桃园|新竹|彰化|高雄|TW|Hinet|HINET|Taiwan, interval=600, tolerance=100, evaluate-before-use=true
+🇺🇲 US = url-test, policy-path=https://gist.githubusercontent.com/fiadigifrank/1b53283024ca8b3d8253c34107a7dc15/raw/FKSurge, update-interval=0, policy-regex-filter=美|🇺🇸|US, interval=600, tolerance=100, evaluate-before-use=true
+🇯🇵 JP = url-test, policy-path=https://gist.githubusercontent.com/fiadigifrank/1b53283024ca8b3d8253c34107a7dc15/raw/FKSurge, update-interval=0, policy-regex-filter=日|🇯🇵|JP, interval=600, tolerance=100, evaluate-before-use=true
+🇸🇬 SG = url-test, policy-path=https://gist.githubusercontent.com/fiadigifrank/1b53283024ca8b3d8253c34107a7dc15/raw/FKSurge, update-interval=0, policy-regex-filter=新|🇸🇬|SG, interval=600, tolerance=100, evaluate-before-use=true
+🇰🇷 KR = url-test, policy-path=https://gist.githubusercontent.com/fiadigifrank/1b53283024ca8b3d8253c34107a7dc15/raw/FKSurge, update-interval=0, policy-regex-filter=🇰🇷|KR|首尔|韩|韓|春川, interval=600, tolerance=100, evaluate-before-use=true
+🍱 Other = select, policy-path=https://gist.githubusercontent.com/fiadigifrank/1b53283024ca8b3d8253c34107a7dc15/raw/FKSurge, update-interval=0, policy-regex-filter=🇩🇪|🇬🇧|🇹🇷|🇵🇭|🇦🇺|🇫🇷|🇮🇳|🇨🇦|🇷🇺|🇧🇷|🇲🇾|🇳🇱|🇦🇪|🇿🇦, interval=600, tolerance=100, evaluate-before-use=true
+🚀 Manual = select, policy-path=https://gist.githubusercontent.com/fiadigifrank/1b53283024ca8b3d8253c34107a7dc15/raw/FKSurge update-interval=0, no-alert=0, interval=600, tolerance=100, evaluate-before-use=true
+
+[Rule]
+# --- CUSTOM RULES ---
+# 新增内置策略 NO-HYBRID，等价为 NO-HYBRID = direct, hybrid=off
+DOMAIN-SUFFIX,cmbchina.com,NO-HYBRID // 部分服务会校验请求的来源 IP，在开启 hybrid 时有可能因为请求IP变化导致无法正常登录和使用（如招商银行），可使用 NO-HYBRID 对特定请求单独关闭 All Hybrid
+# HTTP3/QUIC 协议基于 UDP，部分地区 ISP 或线路 UDP 容易受到干扰或限速，屏蔽掉以阻止 HTTP 3 流量的 UDP 流量，强制回退到 TCP。
+# REJECT-NO-DROP 表示不使用默认的自动丢包逻辑，这样 Surge 每次都会返回 ICMP Port Unreachable，应用会立刻回退而不是等超时。
+AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
+# Download
+PROCESS-NAME,aria2c,🌐 Direct
+PROCESS-NAME,fdm,🌐 Direct
+PROCESS-NAME,Folx,🌐 Direct
+PROCESS-NAME,NetTransport,🌐 Direct
+PROCESS-NAME,Thunder,🌐 Direct
+PROCESS-NAME,Transmission,🌐 Direct
+PROCESS-NAME,uTorrent,🌐 Direct
+PROCESS-NAME,WebTorrent,🌐 Direct
+PROCESS-NAME,WebTorrent Helper,🌐 Direct
+
+# External Resources Update
+# AND,((DOMAIN,raw.githubusercontent.com), (DOMAIN-SUFFIX,github.io), (USER-AGENT,Surge/*)),FINAL,notification-text="♻️External Resources Update",notification-interval=3600
+# Blocking UDP Packets by Youtube and ins
+AND,((DOMAIN-SUFFIX,googlevideo.com), (DOMAIN-SUFFIX,gvt1.com), (DOMAIN-SUFFIX,cdninstagram.com), (PROTOCOL,UDP)),REJECT
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Telegram/Telegram.list,📧 Telegram
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TelegramSG/TelegramSG.list,🇸🇬 SG
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TelegramUS/TelegramUS.list,🇺🇲 US
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Naver/Naver.list,☘️ Line
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Spotify/Spotify.list,🎧 Spotify
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Microsoft/Microsoft.list,🧩 Microsoft
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Apple/Apple.list,🍎 Apple
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Global/Global.list,🎞 Streaming
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TeamViewer/TeamViewer.list,🛰 Proxy
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Global/Global.list,🛰 Proxy
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/China.list,🇨🇳 Domestic
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Unbreak.list,🛰 Proxy
+GEOIP,CN,🇨🇳 Domestic
+FINAL,🐟 Final,dns-failed
+
+[MITM]
+skip-server-cert-verify = true
+hostname = *.amemv.com, *.iydsj.com, *.k.sohu.com, *.kakamobi.cn, *.kingsoft-office-service.com, *.meituan.net, *.musical.ly, *.ofo.com, *.pstatp.com, *.snssdk.com, *.tiktokv.com, *.tv.sohu.com, *.uve.weibo.com, *.ydstatic.com, 101.201.175.228, 119.18.193.135, 123.59.31.1, 154.8.131.171, 182.92.251.113, 4gimg.map.qq.com, a.apicloud.com, a.qiumibao.com, acs.m.taobao.com, act.vip.iqiyi.com, api*.futunn.com, api.21jingji.com, api.caijingmobile.com, api.chelaile.net.cn, api.daydaycook.com.cn, api.douban.com, api.gotokeep.com, api.haohaozhu.cn, api.huomao.com, api.intsig.net, api.izuiyou.com, api.jr.mi.com, api.jxedt.com, api.kkmh.com, api.m.jd.com, api.meipian.me, api.mgzf.com, api.psy-1.com, api.qbb6.com, api.rr.tv, api.smzdm.com, api.vistopia.com.cn, api.waitwaitpay.com, api.wallstreetcn.com, api.weibo.cn, api.xiachufang.com, api.xueqiu.com, api.yangkeduo.com, api.zhihu.com, api.zhuishushenqi.com, api-mifit*.huami.com, api-release.wuta-cam.com, app.58.com, app.api.ke.com, app.bilibili.com, app.mixcapp.com, app.poizon.com, app.variflight.com, app.wy.guahao.com, app.xinpianchang.com, app.yinxiang.com, app.zhuanzhuan.com, appapi.huazhu.com, app-api.smzdm.com, appconf.mail.163.com, appv6.55haitao.com, b.zhuishushenqi.com, business-cdn.shouji.sogou.com, c.m.163.com, cap.caocaokeji.cn, capi.mwee.cn, ccsp-egmas.sf-express.com, cdn.moji.com, cdnfile1.msstatic.com, channel.beitaichufang.com, client.mail.163.com, clientaccess.10086.cn, cms.daydaycook.com.cn, consumer.fcbox.com, creditcardapp.bankcomm.com, daoyu.sdo.com, dl.app.gtja.com, dsa-mfp.fengshows.cn, dxy.com, e.dangdang.com, easyreadfs.nosdn.127.net, g.cdn.pengpengla.com, gateway.shouqiev.com, guide-acs.m.taobao.com, gw.alicdn.com, gw.csdn.net, gw-passenger.01zhuanche.com, heic.alicdn.com, i.ys7.com, iapi.bishijie.com, iface.iqiyi.com, ih2.ireader.com, imeclient.openspeech.cn, img.jiemian.com, img01.10101111cdn.com, interface.music.163.com, ios.lantouzi.com, ios.wps.cn, jump2.bdimg.com, kaola-haitao.oss.kaolacdn.com, learn.chaoxing.com, list-app-m.i4.cn, m*.amap.com, m.client.10010.com, m.ibuscloud.com, m.tuniu.com, m.yap.yahoo.com, manga.bilibili.com, mapi.mafengwo.cn, media.qyer.com, mlife.jf365.boc.cn, mob.mddcloud.com.cn, mobi.360doc.com, mp.weixin.qq.com, mrobot.pcauto.com.cn, mrobot.pconline.com.cn, ms.jr.jd.com, msspjh.emarbox.com, news.ssp.qq.com, newsso.map.qq.com, nnapp.cloudbae.cn, open.qyer.com, p.du.163.com, pan.baidu.com, pic*.chelaile.net, pic1cdn.cmbchina.com, pocketuni.net, portal-xunyou.qingcdn.com, promo.xueqiu.com, pss.txffp.com, r.inews.qq.com, render.alipay.com, res.xiaojukeji.com, resrelease.wuta-cam.com, restapi.iyunmai.com, richmanapi.jxedt.com, rtbapi.douyucdn.cn, s*.zdmimg.com, s.youtube.com, service.4gtv.tv, slapi.oray.net, smkmp.96225.com, snailsleep.net, ss0.bdstatic.com, ssl.kohsocialapp.qq.com, static.vuevideo.net, static1.keepcdn.com, status.boohee.com, support.you.163.com, thor.weidian.com, tieba.baidu.com, tiku.zhan.com, weibointl.api.weibo.cn, www.bodivis.com.cn, www.dandanzan.com, www.flyertea.com, www.hxeduonline.com, www.icourse163.org, www.iyingdi.cn, www.tieba.com, www.youtube.com, www.zhihu.com, www.zybang.com, xyz.cnki.net, xyst.yuanfudao.com, youtubei.googleapis.com, yxyapi*.drcuiyutao.com, zhidao.baidu.com
+ca-passphrase = WANWANCLOUD
+ca-p12 = MIIKVQIBAzCCCh8GCSqGSIb3DQEHAaCCChAEggoMMIIKCDCCBL8GCSqGSIb3DQEHBqCCBLAwggSsAgEAMIIEpQYJKoZIhvcNAQcBMBwGCiqGSIb3DQEMAQMwDgQIKNKq4N6IsjACAk4ggIIEePjbrQlHpC072n0sF++ERIUlGusreQmUYFjD8vQps8AWfQI8aeP+UArNOolPDq33zNhFdWOWHeKtaPQHcdmKt5k92bBXe9tJBSDBEdlhwlC+vngOrP1y8uA2590d2A+88ubt032MDmPhhUYuDDszYG1oITY71w5lCxDjM076PmlQXKLqZdKKZ/tv0+V4v69ZwSODLdr5//jv0VsM/WaFwCmxUYkC9YDiy2AEBSycgAwcVqTadz2wCzPfPhfAYpbb5Kd5NiInUTVitLvD5GBcNHvU/yyIsRE/ZSMPhm3zq9CyuEVLr15SataI6Xq7/+8BIPl0ER9CiJlzJKrsuyoFNvO00QCYgBuLgbiNAoeqAuq4U0N402yeUm12sGisS4YqFaZ/WtKBAf/tK70TGaKdUDFtmzfjzacYRHk4H7vMh1bWF0nimkp1DR/tiGhLXHsQSsn/Rl90oNHbDRgY659NlXyd6Mk27UFAPONsrOlQlQlhCJBkI47+5eDHMPx+YBJNm4y+Pm3bNZAvTTInvefQu6FdQ+nKcddkX6ei6kOSDWx1YfkRA+Il3KBnbk57+cPXatD7QJC1VxQ6cyPeoEq3jk25shf7Yb0a993x9QJp9IHwXMOblAFQC97qSkt09Rj12ppaey3/LHAasG765LLWQZR9/ak91u60PP5B9XwfATBejTE4wUVvcimD2awOV3pctI6JQMFCjVFyGUV8FMEGWoQXLscXaJBFmO7WZP10DhL5PsTOJX5sjWxOGdsrR7SUSV41zwnGhDc6k/FpaTyL6ikNyyigGkgue9bS5qJwNrg58HXWRBtdYBhLLDProeqJAS0VFhxYG0l3NXrd6Vljuw6ef4DG2p1WI/2vZObCcaYWxQtIgxLDnGN22zBK5QrKDeE99vzQACaEBox2NKZX83CRVof4UXv7ltbEJAuJ72FSM5gpuh/qvEFo3veqcYrqggjFwZtmKhhD8MeM+VgfyLnWvrN+EYc12zkQMrMcEVJw9lIt/Ds0flzbarvwv3ZkeXezd1rM8tzFroP3z4fmj+jzQrSWyPTNMNk3o4XhqZohA71Zd/TFA9sdW8GWzO6SxJMc0LKdeYzeiqA7dQPME+oXk3nno9/nUCOV0tXFNeaEHI6UgO9tigvPlg/99ti+RprZitjqbZMrTX5qcxbuhgB0yzt6ixwrqlsEhorqYSs7NHD01KTpe69cEk/D34YirfUTh4D2oz41NHmePNXw0AE11NRl8ryaHJsll9Crc6QYWgayrxAWdh3OPzbN4AoO9I6aqCwnggnUkWTfUleARYlmpfl76A2ZwPQP3+0sgYjD4jplMejcNdtJZLkgVt2EukHpsKis/GPDCAYe7f+Jt4XnR+oBFrxuHODI4ffXerAEQx8asSixyzlsaluJLb/PXy0RB+5QVo0i+vM1WEKKmfWg4XxRcOQl6CwuqgkruHJVKyvr2rdTF7REy++4VyRXvvnDWw/Q1Tb+UW9jbvBRy3j9ENx4iJRYFARrvMfdsSabqJVu0NmxaCUwggVBBgkqhkiG9w0BBwGgggUyBIIFLjCCBSowggUmBgsqhkiG9w0BDAoBAqCCBO4wggTqMBwGCiqGSIb3DQEMAQMwDgQIZONbeqZ/UZ0CAk4gBIIEyNDnJsIglM8phMzqgabq0kzHT9zfTwTOgweSVkhzihIjQOHl76Ql/tYodH79CY6X/9JPyN5oURcDgQsdpQo3yAlrgH6rXtKtfDHC4KwgzyBK9IBL9Icp4peWkqyHKnx79TcDhvjjd9zvb1RjvnJ4Rq9eDyzVGgUkCRlxpwYs3Yo+ERweMcrNFoHwVObHH+Ct92YUI5UbLItU9wN9+HwsAMqKIzL4xzP2kERjK23mH/QCm2jKYy/fPEGljiksFMBpBKtrNxM9VkC29VSYnnMwDRb4E0oTm90nFKljmM6xwq6DLrXQzDDPnqjEQvrkOYwC79XGw+xSi1nX9h07gEIeT5fPa7/2jisfniSRcUYytnAhdd5/EzTAKL4UUhGOTsUpUNnb9mq5tuboycgxXFEs8/mUoRxW/PlN/RFdyfSU2uI4UorcW4wEQZ57VdAgkdT/IMmYsh0McangwOq1gqeMDJfLVYNdgL4YoOvpOnCUaUPfmbpYa8G1PMNbOUMiuX8xRRERwXLiH1plYevBKbjZQT+jedmE2h4GV37RG8UNa2eWNN+eBRxq/67vXUuE+vMQHCDtLty+xiq7yD2fOZWfMX/6q4EqE0EbKYaKJxtJG1UMhDu9w9hZrhtFc6Vlh1JqTH3mXnRwVUrD4X7GxJEekqH2oyP2c0zu8sIqjE28zB3KhhV+1yv7DtczYnXsX1Sb9PUFMArcQeqc5T1HFyHmZGYEy+WRERss/oKQacqreQLTwvU1YTsBSY2RJXj4v0FXut1Z0Lc76NyMmP2nVfJ/y0Ii8PxuRwO9kWMAfdoKdyh3WuQxBEQMU7CPfZYBdQKPr8S0xJPhhyXAQ/X9mA3WySi1+JC343IKyl0w2L3/udKzkV2GUZIyqacyBDZZCeVVq42RIE8FSIrSHrckKw6gIOCsWZgQ6I+IbTeSFLJhRJeTkKTfVW2WaFq6sxiY23UwvOETJrpKGu28awzUzuM8yg3ItGseWd/NEHf7aliUbVRcvKBu4L0oVjeTOeFvb6nQ+ucO3VE8RGqmcyeQvwrl9bUIowH9ip7Yvx4Yz2C+kuNjMdKYZPbObhtI11LDM8dt3FP3gljONkMtgFF7mF+Aoegwf3Y+IRJNolmHkSdFFOgdEcgmirQugkcZk8KF5tUcdRhz6EgoAFLYMNI5mrk4W6jzfQHjdDFfIYoekjv5eYLx4qHrBQE6Vka1b7RLO6Sg8Gm9+YESs24zBbAjiNgjWKB17Wwemx55wdL/VLFiy4+/nY3uCpml8Nyzn0qEJdaGz8/1TdG+D8C9BH2DuuKl3f0MmHCI9EvnnhT7eF9gjT8rzcbwPGWu6pwsYC5kw72pZI98N6ANQ2XLu2Vj2xKgBBRgWVztAvNAkbgedrg+V8DBOA7UaZR/d3dQ1RFlUdxcNnBSGdD8mKV1tPYqGsYtSiTQuzq/jui070zQcdsB8uZN+kUZv8rZ0mpVbYxIdDgOYHTiglev8R9jNCW7uSPME7sKILbM2bqHvAh38xkum+5q7apUBOq1ErdFs7h85ywOZ49qu5D6fxA+ChXDOJHyGRFBZJBhnTcjoH27LofeynsyZvdYwbLB54uqmg+t5rXgMqVf3Qt1N4F6Lb41JtdhWrC5gXW4k/zHQjElMCMGCSqGSIb3DQEJFTEWBBSWjEDmsin5ZQd9remASrrrGCEeQTAtMCEwCQYFKw4DAhoFAAQUnA2rhQ+iFB71Suyk3A9JgVp7X24ECIWTcHww77Qb
+
+[Panel]
+flushDNS = script-name=flushDNS,update-interval=-1
+
+[Script]
+# Flush DNS, show the DNS delay and server.
+flushDNS = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/asset/flushDNS.js,argument=icon=wand.and.stars.inverse&color=#3d3d5b
