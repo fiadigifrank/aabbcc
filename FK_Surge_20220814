@@ -119,13 +119,13 @@ keyword-filter = icloud, ocsp, logs, analytic, imap, adthor, applovin, appnext, 
 
 # > 外部节点
 #🇭🇰 香港节点 = fallback, policy-path=订阅地址, update-interval=0, policy-regex-filter=港|🇭🇰|Hong
-🇹🇼 TW = fallback, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=台|🇹🇼|新北|桃园|新竹|彰化|高雄|TW|Hinet|HINET|Taiwan, interval=600, tolerance=100, evaluate-before-use=true
-🇺🇲 US = fallback, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=美|🇺🇸|US, interval=600, tolerance=100, evaluate-before-use=true
-🇯🇵 JP = fallback, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=日|🇯🇵|JP, interval=600, tolerance=100, evaluate-before-use=true
-🇸🇬 SG = fallback, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=新|🇸🇬|SG, interval=600, tolerance=100, evaluate-before-use=true
-🇰🇷 KR = fallback, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=🇰🇷|KR|首尔|韩|韓|春川, interval=600, tolerance=100, evaluate-before-use=true
+🇹🇼 TW = select, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=台|🇹🇼|新北|桃园|新竹|彰化|高雄|TW|Hinet|HINET|Taiwan, interval=600, tolerance=100, evaluate-before-use=true
+🇺🇲 US = url-test, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=美|🇺🇸|US, interval=600, tolerance=100, evaluate-before-use=true
+🇯🇵 JP = url-test, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=日|🇯🇵|JP, interval=600, tolerance=100, evaluate-before-use=true
+🇸🇬 SG = url-test, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=新|🇸🇬|SG, interval=600, tolerance=100, evaluate-before-use=true
+🇰🇷 KR = url-test, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=🇰🇷|KR|首尔|韩|韓|春川, interval=600, tolerance=100, evaluate-before-use=true
 🍱 Other = select, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=🇩🇪|🇬🇧|🇹🇷|🇵🇭|🇦🇺|🇫🇷|🇮🇳|🇨🇦|🇷🇺|🇧🇷|🇲🇾|🇳🇱|🇦🇪|🇿🇦, interval=600, tolerance=100, evaluate-before-use=true
-🚀 Manual = select, policy-path=https://sub.store/download/collection/WWNCloud update-interval=0, no-alert=0, include-all-proxies=0, interval=600, tolerance=100, evaluate-before-use=true
+🚀 Manual = select, policy-path=https://sub.store/download/collection/WWNCloud update-interval=0, no-alert=0, interval=600, tolerance=100, evaluate-before-use=true
 
 [Rule]
 # --- CUSTOM RULES ---
