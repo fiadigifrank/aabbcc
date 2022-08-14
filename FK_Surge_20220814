@@ -114,7 +114,7 @@ keyword-filter = icloud, ocsp, logs, analytic, imap, adthor, applovin, appnext, 
 🎥 Netflix = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
 🍎 Apple = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
 🧩 Microsoft = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
-🇨🇳 Domestic = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual,
+🇨🇳 Domestic = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
 🐟 List = select, ♻️ Manual, 🇹🇼 TW, 🇺🇲 US, 🇯🇵 JP, 🇸🇬 SG, 🇰🇷 KR, 🍱 Other, 🚀 Manual, 🌐 Direct
 
 # > 外部节点
