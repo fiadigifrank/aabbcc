@@ -123,8 +123,8 @@ keyword-filter = icloud, ocsp, logs, analytic, imap, adthor, applovin, appnext, 
 🇺🇲 US = fallback, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=美|🇺🇸|US, interval=600, tolerance=100, evaluate-before-use=true
 🇯🇵 JP = fallback, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=日|🇯🇵|JP, interval=600, tolerance=100, evaluate-before-use=true
 🇸🇬 SG = fallback, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=新|🇸🇬|SG, interval=600, tolerance=100, evaluate-before-use=true
-🇰🇷 KR = fallback, Policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=🇰🇷|KR|首尔|韩|韓|春川, interval=600, tolerance=100, evaluate-before-use=true
-🍱 Other = select, Policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=🇩🇪|🇬🇧|🇹🇷|🇵🇭|🇦🇺|🇫🇷|🇮🇳|🇨🇦|🇷🇺|🇧🇷|🇲🇾|🇳🇱|🇦🇪|🇿🇦, interval=600, tolerance=100, evaluate-before-use=true
+🇰🇷 KR = fallback, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=🇰🇷|KR|首尔|韩|韓|春川, interval=600, tolerance=100, evaluate-before-use=true
+🍱 Other = select, policy-path=https://sub.store/download/collection/WWNCloud, update-interval=0, policy-regex-filter=🇩🇪|🇬🇧|🇹🇷|🇵🇭|🇦🇺|🇫🇷|🇮🇳|🇨🇦|🇷🇺|🇧🇷|🇲🇾|🇳🇱|🇦🇪|🇿🇦, interval=600, tolerance=100, evaluate-before-use=true
 🚀 Manual = select, policy-path=https://sub.store/download/collection/WWNCloud update-interval=0, no-alert=0, include-all-proxies=0, interval=600, tolerance=100, evaluate-before-use=true
 
 [Rule]
