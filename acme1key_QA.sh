@@ -209,7 +209,7 @@ getDomainCert(){
         bash ~/.acme.sh/acme.sh --issue --dns dns_cf -d "*.${domain}" -d "${domain}" -k ec-256
     fi
     bash ~/.acme.sh/acme.sh --install-cert -d "*.${domain}" --key-file /root/private.key --fullchain-file /root/cert.crt --ecc
-    cp /root/private.key /home/deploy/ACID/ssl/ && cp /root/cert.crt /home/deploy/ACID/ssl/
+    cp /root/private.key /home/deploy/MSSC/ACID/QA/ssl/ && cp /root/cert.crt /home/deploy/MSSC/ACID/QA/ssl/
     checktls
 }
 
@@ -242,9 +242,9 @@ checktls() {
         if [[ -s /root/cert.crt && -s /root/private.key ]]; then
             sed -i '/--cron/d' /etc/crontab >/dev/null 2>&1
             echo "0 0 * * * root bash /root/.acme.sh/acme.sh --cron -f >/dev/null 2>&1" >> /etc/crontab
-            green "证书申请成功！脚本申请到的证书（cert.crt）和私钥（private.key）已保存到 /root 文件夹"
-            yellow "证书crt路径如下：/root/cert.crt"
-            yellow "私钥key路径如下：/root/private.key"
+            green "证书申请成功！脚本申请到的证书（cert.crt）和私钥（private.key）已保存到 /root & /home/deploy/MSSC/ACID/QA/ssl/ 文件夹"
+            yellow "证书crt路径如下：/root/cert.crt /home/deploy/MSSC/ACID/QA/ssl/cert.crt"
+            yellow "私钥key路径如下：/root/private.key /home/deploy/MSSC/ACID/QA/ssl/private.key"
             back2menu
         else
             red "抱歉，证书申请失败"
