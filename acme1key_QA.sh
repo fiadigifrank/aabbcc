@@ -209,8 +209,8 @@ getDomainCert(){
         bash ~/.acme.sh/acme.sh --issue --dns dns_cf -d "*.${domain}" -d "${domain}" -k ec-256
     fi
     bash ~/.acme.sh/acme.sh --install-cert -d "*.${domain}" --key-file /root/private.key --fullchain-file /root/cert.crt --ecc
-    mkdir /home/deploy/MSSC/ACID/QA/ssl/
-    cp /root/private.key /home/deploy/MSSC/ACID/QA/ssl/ && cp /root/cert.crt /home/deploy/MSSC/ACID/QA/ssl/
+    mkdir /home/deploy/MSSC/ssl/
+    cp /root/private.key /home/deploy/MSSC/ssl/ && cp /root/cert.crt /home/deploy/MSSC/ssl/
     checktls
 }
 
