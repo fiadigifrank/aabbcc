@@ -184,6 +184,8 @@ getSingleCert(){
         back2menu
     fi
     bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /root/private.key --fullchain-file /root/cert.crt --ecc
+    mkdir /home/deploy/MSSC/ssl
+    cp /root/private.key /home/deploy/MSSC/ssl && cp /root/cert.crt /home/deploy/MSSC/ssl
     checktls
 }
 
@@ -209,8 +211,8 @@ getDomainCert(){
         bash ~/.acme.sh/acme.sh --issue --dns dns_cf -d "*.${domain}" -d "${domain}" -k ec-256
     fi
     bash ~/.acme.sh/acme.sh --install-cert -d "*.${domain}" --key-file /root/private.key --fullchain-file /root/cert.crt --ecc
-    mkdir /home/deploy/MSSC/ssl/
-    cp /root/private.key /home/deploy/MSSC/ssl/ && cp /root/cert.crt /home/deploy/MSSC/ssl/
+    mkdir /home/deploy/MSSC/ssl
+    cp /root/private.key /home/deploy/MSSC/ssl && cp /root/cert.crt /home/deploy/MSSC/ssl
     checktls
 }
 
@@ -235,6 +237,8 @@ getSingleDomainCert(){
         bash ~/.acme.sh/acme.sh --issue --dns dns_cf -d "${domain}" -k ec-256
     fi
     bash ~/.acme.sh/acme.sh --install-cert -d "${domain}" --key-file /root/private.key --fullchain-file /root/cert.crt --ecc
+    mkdir /home/deploy/MSSC/ssl
+    cp /root/private.key /home/deploy/MSSC/ssl && cp /root/cert.crt /home/deploy/MSSC/ssl
     checktls
 }
 
