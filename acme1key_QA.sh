@@ -335,7 +335,7 @@ menu() {
     echo -e "# ${GREEN}Bitbucket${PLAIN}: https://bitbucket.org/misakano7545             #"
     echo -e "# ${GREEN}GitLab${PLAIN}: https://gitlab.com/misaka-blog                    #"
     echo "#############################################################"
-    echo ""
+    echo -e "#     請先 在 root 下 mkdir SSL 目錄                            #"
     echo -e " ${GREEN}1.${PLAIN} 安装 Acme.sh 域名证书申请脚本"
     echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Acme.sh 域名证书申请脚本${PLAIN}"
     echo " -------------"
