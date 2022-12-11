@@ -183,9 +183,9 @@ getSingleCert(){
         red "目前疑似使用泛域名解析，请使用泛域名申请模式"
         back2menu
     fi
-    bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /root/private.key --fullchain-file /root/cert.crt --ecc
+    bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /root/ssl/private.key --fullchain-file /root/ssl/cert.crt --ecc
     mkdir /home/deploy/MSSC/ssl
-    cp /root/private.key /home/deploy/MSSC/ssl && cp /root/cert.crt /home/deploy/MSSC/ssl
+    cp /root/ssl/private.key /home/deploy/MSSC/ssl && cp /root/ssl/cert.crt /home/deploy/MSSC/ssl
     checktls
 }
 
@@ -210,9 +210,9 @@ getDomainCert(){
     else
         bash ~/.acme.sh/acme.sh --issue --dns dns_cf -d "*.${domain}" -d "${domain}" -k ec-256
     fi
-    bash ~/.acme.sh/acme.sh --install-cert -d "*.${domain}" --key-file /root/private.key --fullchain-file /root/cert.crt --ecc
+    bash ~/.acme.sh/acme.sh --install-cert -d "*.${domain}" --key-file /root/ssl/private.key --fullchain-file /root/ssl/cert.crt --ecc
     mkdir /home/deploy/MSSC/ssl
-    cp /root/private.key /home/deploy/MSSC/ssl && cp /root/cert.crt /home/deploy/MSSC/ssl
+    cp /root/ssl/private.key /home/deploy/MSSC/ssl && cp /root/ssl/cert.crt /home/deploy/MSSC/ssl
     checktls
 }
 
@@ -236,20 +236,20 @@ getSingleDomainCert(){
     else
         bash ~/.acme.sh/acme.sh --issue --dns dns_cf -d "${domain}" -k ec-256
     fi
-    bash ~/.acme.sh/acme.sh --install-cert -d "${domain}" --key-file /root/private.key --fullchain-file /root/cert.crt --ecc
+    bash ~/.acme.sh/acme.sh --install-cert -d "${domain}" --key-file /root/ssl/private.key --fullchain-file /root/ssl/cert.crt --ecc
     mkdir /home/deploy/MSSC/ssl
-    cp /root/private.key /home/deploy/MSSC/ssl && cp /root/cert.crt /home/deploy/MSSC/ssl
+    cp /root/ssl/private.key /home/deploy/MSSC/ssl && cp /root/ssl/cert.crt /home/deploy/MSSC/ssl
     checktls
 }
 
 checktls() {
-    if [[ -f /root/cert.crt && -f /root/private.key ]]; then
-        if [[ -s /root/cert.crt && -s /root/private.key ]]; then
+    if [[ -f /root/ssl/cert.crt && -f /root/ssl/rivate.key ]]; then
+        if [[ -s /root/ssl/cert.crt && -s /root/ssl/private.key ]]; then
             sed -i '/--cron/d' /etc/crontab >/dev/null 2>&1
             echo "0 0 * * * root bash /root/.acme.sh/acme.sh --cron -f >/dev/null 2>&1" >> /etc/crontab
-            green "证书申请成功！脚本申请到的证书（cert.crt）和私钥（private.key）已保存到 /root & /home/deploy/MSSC/ACID/QA/ssl/ 文件夹"
-            yellow "证书crt路径如下：/root/cert.crt /home/deploy/MSSC/ACID/QA/ssl/cert.crt"
-            yellow "私钥key路径如下：/root/private.key /home/deploy/MSSC/ACID/QA/ssl/private.key"
+            green "证书申请成功！脚本申请到的证书（cert.crt）和私钥（private.key）已保存到 /root/ssl & /home/deploy/MSSC/ACID/QA/ssl/ 文件夹"
+            yellow "证书crt路径如下：/root/ssl/cert.crt /home/deploy/MSSC/ACID/QA/ssl/cert.crt"
+            yellow "私钥key路径如下：/root/ssl/private.key /home/deploy/MSSC/ACID/QA/ssl/private.key"
             back2menu
         else
             red "抱歉，证书申请失败"
@@ -277,7 +277,7 @@ revoke_cert() {
         bash ~/.acme.sh/acme.sh --revoke -d ${domain} --ecc
         bash ~/.acme.sh/acme.sh --remove -d ${domain} --ecc
         rm -rf ~/.acme.sh/${domain}_ecc
-        rm -f /root/cert.crt /root/private.key
+        rm -f /root/ssl/cert.crt /root/ssl/private.key
         green "撤销${domain}的域名证书成功"
         back2menu
     else
