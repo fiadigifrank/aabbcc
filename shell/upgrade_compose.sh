@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo apt-get remove docker-compose-plugin -y &&
+
 VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | grep -Po '"tag_name": "\K.*\d') &&
 DESTINATION=/usr/local/bin/docker-compose &&
 
