@@ -183,8 +183,9 @@ getSingleCert(){
         red "目前疑似使用泛域名解析，请使用泛域名申请模式"
         back2menu
     fi
+    rm -r /root/ssl && mkdir /root/ssl
     bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /root/ssl/private.key --fullchain-file /root/ssl/cert.crt --ecc
-    mkdir /home/deploy/FIACS/ssl
+    rm -r /home/deploy/FIACS/ssl && mkdir /home/deploy/FIACS/ssl
     cp /root/ssl/private.key /home/deploy/FIACS/ssl/$domain.key && cp /root/ssl/cert.crt /home/deploy/FIACS/ssl/$domain.crt
     checktls
 }
@@ -210,8 +211,9 @@ getDomainCert(){
     else
         bash ~/.acme.sh/acme.sh --issue --dns dns_cf -d "*.${domain}" -d "${domain}" -k ec-256
     fi
+    rm -r /root/ssl && mkdir /root/ssl
     bash ~/.acme.sh/acme.sh --install-cert -d "*.${domain}" --key-file /root/ssl/private.key --fullchain-file /root/ssl/cert.crt --ecc
-    mkdir /home/deploy/FIACS/ssl
+    rm -r /home/deploy/FIACS/ssl && mkdir /home/deploy/FIACS/ssl
     cp /root/ssl/private.key /home/deploy/FIACS/ssl/$domain.key && cp /root/ssl/cert.crt /home/deploy/FIACS/ssl/$domain.crt
     checktls
 }
@@ -236,8 +238,9 @@ getSingleDomainCert(){
     else
         bash ~/.acme.sh/acme.sh --issue --dns dns_cf -d "${domain}" -k ec-256
     fi
+    rm -r /root/ssl && mkdir /root/ssl
     bash ~/.acme.sh/acme.sh --install-cert -d "${domain}" --key-file /root/ssl/private.key --fullchain-file /root/ssl/cert.crt --ecc
-    mkdir /home/deploy/FIACS/ssl
+    rm -r /home/deploy/FIACS/ssl && mkdir /home/deploy/FIACS/ssl
     cp /root/ssl/private.key /home/deploy/FIACS/ssl/$domain.key && cp /root/ssl/cert.crt /home/deploy/FIACS/ssl/$domain.crt
     checktls
 }
