@@ -183,10 +183,10 @@ getSingleCert(){
         red "目前疑似使用泛域名解析，请使用泛域名申请模式"
         back2menu
     fi
-    rm -r /root/ssl && mkdir /root/ssl
-    bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /root/ssl/private.key --fullchain-file /root/ssl/cert.crt --ecc
-    rm -r /home/deploy/FIACS/ssl && mkdir /home/deploy/FIACS/ssl
-    cp /root/ssl/private.key /home/deploy/FIACS/ssl/$domain.key && cp /root/ssl/cert.crt /home/deploy/FIACS/ssl/$domain.crt
+    # rm -r /root/ssl && mkdir /root/ssl
+    bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /root/ssl/$domain.key --fullchain-file /root/ssl/$domain.crt --ecc
+    # rm -r /home/deploy/FIACS/ssl && mkdir /home/deploy/FIACS/ssl
+    cp /root/ssl/$domain.key /home/deploy/FIACS/ssl/$domain.key && cp /root/ssl/cert.crt /home/deploy/FIACS/ssl/$domain.crt
     checktls
 }
 
@@ -211,10 +211,10 @@ getDomainCert(){
     else
         bash ~/.acme.sh/acme.sh --issue --dns dns_cf -d "*.${domain}" -d "${domain}" -k ec-256
     fi
-    rm -r /root/ssl && mkdir /root/ssl
-    bash ~/.acme.sh/acme.sh --install-cert -d "*.${domain}" --key-file /root/ssl/private.key --fullchain-file /root/ssl/cert.crt --ecc
-    rm -r /home/deploy/FIACS/ssl && mkdir /home/deploy/FIACS/ssl
-    cp /root/ssl/private.key /home/deploy/FIACS/ssl/$domain.key && cp /root/ssl/cert.crt /home/deploy/FIACS/ssl/$domain.crt
+    # rm -r /root/ssl && mkdir /root/ssl
+    bash ~/.acme.sh/acme.sh --install-cert -d "*.${domain}" --key-file /root/ssl/$domain.key --fullchain-file /root/ssl/$domain.crt --ecc
+    # rm -r /home/deploy/FIACS/ssl && mkdir /home/deploy/FIACS/ssl
+    cp /root/ssl/$domain.key /home/deploy/FIACS/ssl/$domain.key && cp /root/ssl/$domain.crt /home/deploy/FIACS/ssl/$domain.crt
     checktls
 }
 
@@ -238,21 +238,22 @@ getSingleDomainCert(){
     else
         bash ~/.acme.sh/acme.sh --issue --dns dns_cf -d "${domain}" -k ec-256
     fi
-    rm -r /root/ssl && mkdir /root/ssl
-    bash ~/.acme.sh/acme.sh --install-cert -d "${domain}" --key-file /root/ssl/private.key --fullchain-file /root/ssl/cert.crt --ecc
-    rm -r /home/deploy/FIACS/ssl && mkdir /home/deploy/FIACS/ssl
-    cp /root/ssl/private.key /home/deploy/FIACS/ssl/$domain.key && cp /root/ssl/cert.crt /home/deploy/FIACS/ssl/$domain.crt
+    # rm -r /root/ssl && mkdir /root/ssl
+    bash ~/.acme.sh/acme.sh --install-cert -d "${domain}" --key-file /root/ssl/$domain.key --fullchain-file /root/ssl/$domain.crt --ecc
+    # rm -r /home/deploy/FIACS/ssl && mkdir /home/deploy/FIACS/ssl
+    cp /root/ssl/$domain.key /home/deploy/FIACS/ssl/$domain.key && cp /root/ssl/$domain.crt /home/deploy/FIACS/ssl/$domain.crt
     checktls
 }
 
 checktls() {
+    read -rp "请输入需要查询证书的域名：" domain
     if [[ -f /root/ssl/$domain.crt && -f /root/ssl/$domain.key ]]; then
         if [[ -s /root/ssl/$domain.crt && -s /root/ssl/$domain.key ]]; then
             sed -i '/--cron/d' /etc/crontab >/dev/null 2>&1
             echo "0 0 * * * root bash /root/.acme.sh/acme.sh --cron -f >/dev/null 2>&1" >> /etc/crontab
-            green "证书申请成功！脚本申请到的证书（cert.crt）和私钥（private.key）已保存到 /root/ssl & /home/deploy/MSSC/ACID/QA/ssl/ 文件夹"
-            yellow "证书crt路径如下：/root/ssl/cert.crt /home/deploy/FIACS/ssl/$domain.crt"
-            yellow "私钥key路径如下：/root/ssl/private.key /home/deploy/FIACS/ssl/$domain.key"
+            green "证书申请成功！脚本申请到的证书（cert.crt）和私钥（private.key）已保存到 /root/ssl & /home/deploy/FIACS/ssl/ 文件夹"
+            yellow "证书crt路径如下：/root/ssl/$domain.crt /home/deploy/FIACS/ssl/$domain.crt"
+            yellow "私钥key路径如下：/root/ssl/$domain.key /home/deploy/FIACS/ssl/$domain.key"
             back2menu
         else
             red "抱歉，证书申请失败"
