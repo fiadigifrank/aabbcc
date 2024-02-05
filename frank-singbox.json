@@ -79,8 +79,8 @@
             "outbound": "🤖 openai"
             },
             {
-            "rule_set": "google",
-            "outbound": "google"
+            "rule_set": "G google",
+            "outbound": "G google"
             },
             {
             "rule_set": "🍎 apple",
@@ -122,7 +122,7 @@
             "download_detour": "🛰 proxy"
             },
             {
-            "tag": "google",
+            "tag": "G google",
             "type": "remote",
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/google.srs",
@@ -184,7 +184,7 @@
             "default": "🕹️ All-Auto"
         },
         {
-            "tag": "google",
+            "tag": "G google",
             "type": "selector",
             "outbounds": [
             "🛰 proxy",
