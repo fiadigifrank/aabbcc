@@ -91,6 +91,10 @@
             "outbound": "📧 telegram"
             },
             {
+            "rule_set": "🎧 Spotify",
+            "outbound": "🎧 Spotify"
+            },
+            {
             "rule_set": "🇨🇳 cn",
             "outbound": "🇨🇳 cn"
             },
@@ -155,7 +159,14 @@
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geosite/youtube.srs",
             "download_detour": "🛰 proxy"
-            }
+            },
+            {
+                "tag": "🎧 Spotify",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geosite/spotify.srs",
+                "download_detour": "🛰 proxy"
+                }
         ],
         "final": "🐟 final",
         "auto_detect_interface": true
@@ -287,6 +298,17 @@
             "🕹️ All-Auto"
             ],
             "default": "🛰 proxy"
+        },
+        {
+            "tag": "🎧 Spotify",
+            "type": "selector",
+            "outbounds": [
+            "🛰 proxy",
+            "direct",
+            "🇺🇲 US",
+            "🇺🇲 US-Auto"
+            ],
+            "default": "🇺🇲 US-Auto"
         },
         {
             "tag": "🇨🇳 cn",
