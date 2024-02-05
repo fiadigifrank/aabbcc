@@ -462,10 +462,12 @@
             "outbounds": [
             "direct",
             "proxy",
+            "kr",
+            "kr-auto",
             "hk",
             "hk-auto",
-            "🇹",
             "tw",
+            "tw-auto",
             "jp",
             "jp-auto",
             "sg",
