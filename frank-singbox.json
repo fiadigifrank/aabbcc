@@ -165,6 +165,7 @@
             "tag": "proxy",
             "type": "selector",
             "outbounds": [
+            "🦹 Hy2",    
             "🦹 Hy2-Auto",
             "🇰🇷 KR",
             "🇰🇷 KR-Auto",    
@@ -188,6 +189,7 @@
             "outbounds": [
             "proxy",
             "direct",
+            "🦹 Hy2",
             "🦹 Hy2-Auto",
             "🇰🇷 KR",
             "🇰🇷 KR-Auto",
@@ -210,6 +212,7 @@
             "outbounds": [
             "proxy",
             "direct",
+            "🦹 Hy2",
             "🦹 Hy2-Auto",
             "🇹🇼 TW",
             "🇹🇼 TW-Auto",
@@ -230,6 +233,7 @@
             "outbounds": [
             "proxy",
             "direct",
+            "🦹 Hy2",
             "🦹 Hy2-Auto",
             "🇰🇷 KR",
             "🇰🇷 KR-Auto",
@@ -252,6 +256,7 @@
             "outbounds": [
             "proxy",
             "direct",
+            "🦹 Hy2",
             "🦹 Hy2-Auto",
             "🇰🇷 KR",
             "🇰🇷 KR-Auto",
@@ -274,6 +279,7 @@
             "outbounds": [
             "proxy",
             "direct",
+            "🦹 Hy2",
             "🦹 Hy2-Auto",
             "🇰🇷 KR",
             "🇰🇷 KR-Auto",
@@ -296,6 +302,7 @@
             "outbounds": [
             "proxy",
             "direct",
+            "🦹 Hy2",
             "🦹 Hy2-Auto",
             "🇰🇷 KR",
             "🇰🇷 KR-Auto",
@@ -318,6 +325,7 @@
             "outbounds": [
             "proxy",
             "direct",
+            "🦹 Hy2",
             "🦹 Hy2-Auto",
             "🇰🇷 KR",
             "🇰🇷 KR-Auto",
@@ -333,6 +341,11 @@
             "🕹️ All-Auto"
             ],
             "default": "proxy"
+        },
+        {
+            "tag": "🦹 Hy2",
+            "type": "selector",
+            "outbounds": []
         },
         {
             "tag": "🇰🇷 KR",
@@ -426,6 +439,7 @@
             "outbounds": [
             "direct",
             "proxy",
+            "🦹 Hy2",
             "🦹 Hy2-Auto",
             "🇰🇷 KR",
             "🇰🇷 KR-Auto",
