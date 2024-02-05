@@ -9,7 +9,7 @@
             {
             "tag": "google",
             "address": "https://8.8.8.8/dns-query",
-            "detour": "proxy"
+            "detour": "🛰 proxy"
             },
             {
             "tag": "tx",
@@ -68,15 +68,15 @@
             },
             {
             "clash_mode": "Global",
-            "outbound": "GLOBAL"
+            "outbound": "🌐 GLOBAL"
             },
             {
             "rule_set": "🎞 youtube",
             "outbound": "🎞 youtube"
             },
             {
-            "rule_set": "openai",
-            "outbound": "openai"
+            "rule_set": "🤖 openai",
+            "outbound": "🤖 openai"
             },
             {
             "rule_set": "google",
@@ -96,7 +96,7 @@
             },
             {
             "rule_set": "geolocation-!cn",
-            "outbound": "proxy"
+            "outbound": "🛰 proxy"
             },
             {
             "inbound": [
@@ -112,57 +112,57 @@
             "type": "remote",
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/apple.srs",
-            "download_detour": "proxy"
+            "download_detour": "🛰 proxy"
             },
             {
             "tag": "🇨🇳 cn",
             "type": "remote",
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/cn.srs",
-            "download_detour": "proxy"
+            "download_detour": "🛰 proxy"
             },
             {
             "tag": "google",
             "type": "remote",
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/google.srs",
-            "download_detour": "proxy"
+            "download_detour": "🛰 proxy"
             },
             {
             "tag": "geolocation-!cn",
             "type": "remote",
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-!cn.srs",
-            "download_detour": "proxy"
+            "download_detour": "🛰 proxy"
             },
             {
-            "tag": "openai",
+            "tag": "🤖 openai",
             "type": "remote",
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs",
-            "download_detour": "proxy"
+            "download_detour": "🛰 proxy"
             },
             {
             "tag": "📧 telegram",
             "type": "remote",
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/telegram.srs",
-            "download_detour": "proxy"
+            "download_detour": "🛰 proxy"
             },
             {
             "tag": "🎞 youtube",
             "type": "remote",
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geosite/youtube.srs",
-            "download_detour": "proxy"
+            "download_detour": "🛰 proxy"
             }
         ],
-        "final": "final",
+        "final": "🐟 final",
         "auto_detect_interface": true
         },
         "outbounds": [
         {
-            "tag": "proxy",
+            "tag": "🛰 proxy",
             "type": "selector",
             "outbounds": [
             "🦹 Hy2",    
@@ -187,7 +187,7 @@
             "tag": "google",
             "type": "selector",
             "outbounds": [
-            "proxy",
+            "🛰 proxy",
             "direct",
             "🦹 Hy2",
             "🦹 Hy2-Auto",
@@ -204,13 +204,13 @@
             "🕹️ All",
             "🕹️ All-Auto"
             ],
-            "default": "proxy"
+            "default": "🛰 proxy"
         },
         {
             "tag": "🍎 apple",
             "type": "selector",
             "outbounds": [
-            "proxy",
+            "🛰 proxy",
             "direct",
             "🦹 Hy2",
             "🦹 Hy2-Auto",
@@ -227,16 +227,12 @@
             "tag": "📧 telegram",
             "type": "selector",
             "outbounds": [
-            "proxy",
+            "🛰 proxy",
             "direct",
             "🦹 Hy2",
             "🦹 Hy2-Auto",
-            "🇰🇷 KR",
-            "🇰🇷 KR-Auto",
             "🇹🇼 TW",
             "🇹🇼 TW-Auto",
-            "🇯🇵 JP",
-            "🇯🇵 JP-Auto",
             "🇸🇬 SG",
             "🇸🇬 SG-Auto",
             "🇺🇲 US",
@@ -244,13 +240,13 @@
             "🕹️ All",
             "🕹️ All-Auto"
             ],
-            "default": "proxy"
+            "default": "🛰 proxy"
         },
         {
             "tag": "🎞 youtube",
             "type": "selector",
             "outbounds": [
-            "proxy",
+            "🛰 proxy",
             "direct",
             "🦹 Hy2",
             "🦹 Hy2-Auto",
@@ -267,13 +263,13 @@
             "🕹️ All",
             "🕹️ All-Auto"
             ],
-            "default": "proxy"
+            "default": "🛰 proxy"
         },
         {
-            "tag": "openai",
+            "tag": "🤖 openai",
             "type": "selector",
             "outbounds": [
-            "proxy",
+            "🛰 proxy",
             "direct",
             "🦹 Hy2",
             "🦹 Hy2-Auto",
@@ -290,13 +286,13 @@
             "🕹️ All",
             "🕹️ All-Auto"
             ],
-            "default": "proxy"
+            "default": "🛰 proxy"
         },
         {
             "tag": "🇨🇳 cn",
             "type": "selector",
             "outbounds": [
-            "proxy",
+            "🛰 proxy",
             "direct",
             "🦹 Hy2",
             "🦹 Hy2-Auto",
@@ -316,10 +312,10 @@
             "default": "direct"
         },
         {
-            "tag": "final",
+            "tag": "🐟 final",
             "type": "selector",
             "outbounds": [
-            "proxy",
+            "🛰 proxy",
             "direct",
             "🦹 Hy2",
             "🦹 Hy2-Auto",
@@ -336,7 +332,7 @@
             "🕹️ All",
             "🕹️ All-Auto"
             ],
-            "default": "proxy"
+            "default": "🛰 proxy"
         },
         {
             "tag": "🦹 Hy2",
@@ -430,11 +426,11 @@
             "tolerance": 50
         },
         {
-            "tag": "GLOBAL",
+            "tag": "🌐 GLOBAL",
             "type": "selector",
             "outbounds": [
             "direct",
-            "proxy",
+            "🛰 proxy",
             "🦹 Hy2",
             "🦹 Hy2-Auto",
             "🇰🇷 KR",
@@ -502,10 +498,10 @@
         ],
         "experimental": {
         "clash_api": {
-            "external_controller": "127.0.0.1:9090",
+            "external_controller": "127.0.0.1:9093",
             "external_ui": "ui",
             "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
-            "external_ui_download_detour": "proxy"
+            "external_ui_download_detour": "🛰 proxy"
         },
         "cache_file": {
             "enabled": true,
