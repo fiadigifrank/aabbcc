@@ -71,8 +71,8 @@
             "outbound": "GLOBAL"
             },
             {
-            "rule_set": "youtube",
-            "outbound": "youtube"
+            "rule_set": "🎞 youtube",
+            "outbound": "🎞 youtube"
             },
             {
             "rule_set": "openai",
@@ -83,16 +83,16 @@
             "outbound": "google"
             },
             {
-            "rule_set": "apple",
-            "outbound": "apple"
+            "rule_set": "🍎 apple",
+            "outbound": "🍎 apple"
             },
             {
-            "rule_set": "telegram",
-            "outbound": "telegram"
+            "rule_set": "📧 telegram",
+            "outbound": "📧 telegram"
             },
             {
-            "rule_set": "cn",
-            "outbound": "cn"
+            "rule_set": "🇨🇳 cn",
+            "outbound": "🇨🇳 cn"
             },
             {
             "rule_set": "geolocation-!cn",
@@ -108,14 +108,14 @@
         ],
         "rule_set": [
             {
-            "tag": "apple",
+            "tag": "🍎 apple",
             "type": "remote",
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/apple.srs",
             "download_detour": "proxy"
             },
             {
-            "tag": "cn",
+            "tag": "🇨🇳 cn",
             "type": "remote",
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/cn.srs",
@@ -143,14 +143,14 @@
             "download_detour": "proxy"
             },
             {
-            "tag": "telegram",
+            "tag": "📧 telegram",
             "type": "remote",
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/telegram.srs",
             "download_detour": "proxy"
             },
             {
-            "tag": "youtube",
+            "tag": "🎞 youtube",
             "type": "remote",
             "format": "binary",
             "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geosite/youtube.srs",
@@ -207,7 +207,7 @@
             "default": "proxy"
         },
         {
-            "tag": "apple",
+            "tag": "🍎 apple",
             "type": "selector",
             "outbounds": [
             "proxy",
@@ -216,10 +216,6 @@
             "🦹 Hy2-Auto",
             "🇹🇼 TW",
             "🇹🇼 TW-Auto",
-            "🇯🇵 JP",
-            "🇯🇵 JP-Auto",
-            "🇸🇬 SG",
-            "🇸🇬 SG-Auto",
             "🇺🇲 US",
             "🇺🇲 US-Auto",
             "🕹️ All",
@@ -228,7 +224,7 @@
             "default": "direct"
         },
         {
-            "tag": "telegram",
+            "tag": "📧 telegram",
             "type": "selector",
             "outbounds": [
             "proxy",
@@ -251,7 +247,7 @@
             "default": "proxy"
         },
         {
-            "tag": "youtube",
+            "tag": "🎞 youtube",
             "type": "selector",
             "outbounds": [
             "proxy",
@@ -297,7 +293,7 @@
             "default": "proxy"
         },
         {
-            "tag": "cn",
+            "tag": "🇨🇳 cn",
             "type": "selector",
             "outbounds": [
             "proxy",
