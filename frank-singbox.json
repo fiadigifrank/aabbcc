@@ -7,46 +7,54 @@
         },
         "servers": [
             {
-            "tag": "google",
-            "address": "https://8.8.8.8/dns-query",
-            "detour": "🛰 proxy"
+                "tag": "google",
+                "address": "https://8.8.8.8/dns-query",
+                "detour": "🛰 proxy"
             },
             {
-            "tag": "tx",
-            "address": "https://120.53.53.53/dns-query",
-            "detour": "direct"
+                "tag": "tx",
+                "address": "https://120.53.53.53/dns-query",
+                "detour": "direct"
             },
             {
-            "tag": "fakeip",
-            "address": "fakeip"
+                "tag": "fakeip",
+                "address": "fakeip"
             }
         ],
         "rules": [
             {
-            "outbound": "any",
-            "server": "tx",
-            "disable_cache": true
+                "outbound": "any",
+                "server": "tx",
+                "disable_cache": true
             },
             {
-            "clash_mode": "Direct",
-            "server": "tx"
+                "clash_mode": "Direct",
+                "server": "tx"
             },
             {
-            "clash_mode": "Global",
-            "server": "fakeip"
+                "clash_mode": "Global",
+                "server": "fakeip"
             },
             {
-            "inbound": "tun",
-            "query_type": [
-                "A",
-                "AAAA"
-            ],
-            "server": "fakeip",
-            "rewrite_ttl": 1
+                "inbound": "tun",
+                "query_type": [
+                    "A",
+                    "AAAA"
+                ],
+                "server": "fakeip",
+                "rewrite_ttl": 1
             },
             {
-            "rule_set": "geolocation-!cn",
-            "server": "google"
+                "rule_set": "geolocation-!cn",
+                "server": "google"
+            },
+            {
+                "process_name": [
+                    "TencentMeeting", "NemoDesktop", "ToDesk", "ToDesk_Service",
+                    "WeChat", "Tailscale", "wireguard-go", "Tunnelblick",
+                    "softwareupdated", "kubectl"
+                ],
+                "server": "tx"
             }
         ],
         "final": "tx",
@@ -55,110 +63,110 @@
         "route": {
         "rules": [
             {
-            "port": 53,
-            "outbound": "dns-out"
+                "port": 53,
+                "outbound": "dns-out"
             },
             {
-            "ip_is_private": true,
-            "outbound": "direct"
+                "ip_is_private": true,
+                "outbound": "direct"
             },
             {
-            "clash_mode": "Direct",
-            "outbound": "direct"
+                "clash_mode": "Direct",
+                "outbound": "direct"
             },
             {
-            "clash_mode": "Global",
-            "outbound": "🌐 GLOBAL"
+                "clash_mode": "Global",
+                "outbound": "🌐 GLOBAL"
             },
             {
-            "rule_set": "🎞 youtube",
-            "outbound": "🎞 youtube"
+                "rule_set": "🎞 youtube",
+                "outbound": "🎞 youtube"
             },
             {
-            "rule_set": "🤖 openai",
-            "outbound": "🤖 openai"
+                "rule_set": "🤖 openai",
+                "outbound": "🤖 openai"
             },
             {
-            "rule_set": "G google",
-            "outbound": "G google"
+                "rule_set": "G google",
+                "outbound": "G google"
             },
             {
-            "rule_set": "🍎 apple",
-            "outbound": "🍎 apple"
+                "rule_set": "🍎 apple",
+                "outbound": "🍎 apple"
             },
             {
-            "rule_set": "📧 telegram",
-            "outbound": "📧 telegram"
+                "rule_set": "📧 telegram",
+                "outbound": "📧 telegram"
             },
             {
-            "rule_set": "🎧 Spotify",
-            "outbound": "🎧 Spotify"
+                "rule_set": "🎧 Spotify",
+                "outbound": "🎧 Spotify"
             },
             {
-            "rule_set": "🇨🇳 cn",
-            "outbound": "🇨🇳 cn"
+                "rule_set": "🇨🇳 cn",
+                "outbound": "🇨🇳 cn"
             },
             {
-            "rule_set": "geolocation-!cn",
-            "outbound": "🛰 proxy"
+                "rule_set": "geolocation-!cn",
+                "outbound": "🛰 proxy"
             },
             {
-            "inbound": [
-                "tun",
-                "mixed"
-            ],
-            "outbound": "loop"
+                "inbound": [
+                    "tun",
+                    "mixed"
+                ],
+                "outbound": "loop"
             }
         ],
         "rule_set": [
             {
-            "tag": "🍎 apple",
-            "type": "remote",
-            "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/apple.srs",
-            "download_detour": "🛰 proxy"
+                "tag": "🍎 apple",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/apple.srs",
+                "download_detour": "🛰 proxy"
             },
             {
-            "tag": "🇨🇳 cn",
-            "type": "remote",
-            "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/cn.srs",
-            "download_detour": "🛰 proxy"
+                "tag": "🇨🇳 cn",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/cn.srs",
+                "download_detour": "🛰 proxy"
             },
             {
-            "tag": "G google",
-            "type": "remote",
-            "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/google.srs",
-            "download_detour": "🛰 proxy"
+                "tag": "G google",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/google.srs",
+                "download_detour": "🛰 proxy"
             },
             {
-            "tag": "geolocation-!cn",
-            "type": "remote",
-            "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-!cn.srs",
-            "download_detour": "🛰 proxy"
+                "tag": "geolocation-!cn",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-!cn.srs",
+                "download_detour": "🛰 proxy"
             },
             {
-            "tag": "🤖 openai",
-            "type": "remote",
-            "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs",
-            "download_detour": "🛰 proxy"
+                "tag": "🤖 openai",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs",
+                "download_detour": "🛰 proxy"
             },
             {
-            "tag": "📧 telegram",
-            "type": "remote",
-            "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/telegram.srs",
-            "download_detour": "🛰 proxy"
+                "tag": "📧 telegram",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/telegram.srs",
+                "download_detour": "🛰 proxy"
             },
             {
-            "tag": "🎞 youtube",
-            "type": "remote",
-            "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geosite/youtube.srs",
-            "download_detour": "🛰 proxy"
+                "tag": "🎞 youtube",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geosite/youtube.srs",
+                "download_detour": "🛰 proxy"
             },
             {
                 "tag": "🎧 Spotify",
