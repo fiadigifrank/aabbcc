@@ -196,6 +196,8 @@
             "🇸🇬 SG-Auto",
             "🇺🇲 US",
             "🇺🇲 US-Auto",
+            "🍱 Other",
+            "🍱 Other-Auto",
             "🕹️ All",
             "🕹️ All-Auto",
             "direct"
@@ -220,6 +222,8 @@
             "🇸🇬 SG-Auto",
             "🇺🇲 US",
             "🇺🇲 US-Auto",
+            "🍱 Other",
+            "🍱 Other-Auto",
             "🕹️ All",
             "🕹️ All-Auto"
             ],
@@ -256,6 +260,8 @@
             "🇸🇬 SG-Auto",
             "🇺🇲 US",
             "🇺🇲 US-Auto",
+            "🍱 Other",
+            "🍱 Other-Auto",
             "🕹️ All",
             "🕹️ All-Auto"
             ],
@@ -279,6 +285,8 @@
             "🇸🇬 SG-Auto",
             "🇺🇲 US",
             "🇺🇲 US-Auto",
+            "🍱 Other",
+            "🍱 Other-Auto",
             "🕹️ All",
             "🕹️ All-Auto"
             ],
@@ -302,6 +310,8 @@
             "🇸🇬 SG-Auto",
             "🇺🇲 US",
             "🇺🇲 US-Auto",
+            "🍱 Other",
+            "🍱 Other-Auto",
             "🕹️ All",
             "🕹️ All-Auto"
             ],
@@ -359,6 +369,8 @@
             "🇸🇬 SG-Auto",
             "🇺🇲 US",
             "🇺🇲 US-Auto",
+            "🍱 Other",
+            "🍱 Other-Auto",
             "🕹️ All",
             "🕹️ All-Auto"
             ],
@@ -391,6 +403,11 @@
         },
         {
             "tag": "🇺🇲 US",
+            "type": "selector",
+            "outbounds": []
+        },
+        {
+            "tag": "🍱 Other",
             "type": "selector",
             "outbounds": []
         },
@@ -448,6 +465,14 @@
             "tolerance": 50
         },
         {
+            "tag": "🍱 Other-Auto",
+            "type": "urltest",
+            "outbounds": [],
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": "1m",
+            "tolerance": 50
+        },
+        {
             "tag": "🕹️ All-Auto",
             "type": "urltest",
             "outbounds": [],
@@ -473,6 +498,8 @@
             "🇸🇬 SG-Auto",
             "🇺🇲 US",
             "🇺🇲 US-Auto",
+            "🍱 Other",
+            "🍱 Other-Auto",
             "🕹️ All",
             "🕹️ All-Auto"
             ],

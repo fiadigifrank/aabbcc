@@ -40,6 +40,9 @@ config.outbounds.map(i => {
     if (['🇺🇲 US', '🇺🇲 US-Auto'].includes(i.tag)) {
         i.outbounds.push(...getTags(proxies, /美|us|unitedstates|united states|🇺🇸/i))
     }
+    if (['🍱 Other', '🍱 Other-Auto'].includes(i.tag)) {
+        i.outbounds.push(...getTags(proxies, /🇩🇪|🇬🇧|🇹🇷|🇵🇭|🇦🇺|🇫🇷|🇮🇳|🇨🇦|🇷🇺|🇧🇷|🇲🇾|🇳🇱|🇦🇪|🇿🇦/i))
+    }
 })
 
 config.outbounds.forEach(outbound => {
