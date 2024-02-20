@@ -9,11 +9,13 @@
             {
                 "tag": "google",
                 "address": "https://8.8.8.8/dns-query",
+                "strategy": "prefer_ipv6",
                 "detour": "🛰 proxy"
             },
             {
                 "tag": "tx",
                 "address": "https://120.53.53.53/dns-query",
+                "strategy": "prefer_ipv6",
                 "detour": "direct"
             },
             {
