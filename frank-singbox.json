@@ -87,7 +87,7 @@
                 "server": "google"
             }
         ],
-        "final": "tx",
+        "final": "google",
         "independent_cache": true
         },
         "route": {
@@ -235,7 +235,7 @@
                 "download_detour": "🛰 proxy"
                 }
         ],
-        "final": "🐟 final",
+        "final": "🛰 proxy",
         "auto_detect_interface": true
         },
         "outbounds": [
