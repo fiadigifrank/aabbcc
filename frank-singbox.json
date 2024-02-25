@@ -63,6 +63,21 @@
                     "Rusedesk"
                 ],
                 "server": "google"
+            },
+            {
+                "domain": [
+                    "accounts.google.com"
+                ],
+                "domain_suffix": [
+                    "sourceforge.net"
+                ],
+                "server": "google"
+            },
+            {
+                "domain_suffix": [
+                    "rdsapi.fiacloud.dev"
+                ],
+                "server": "google"
             }
         ],
         "final": "tx",
@@ -537,6 +552,7 @@
             "stack": "system",
             "auto_route": true,
             "sniff": true,
+            "sniff_override_destination": false,
             "platform": {
             "http_proxy": {
                 "enabled": true,
