@@ -82,7 +82,7 @@
             },
             {
                 "domain_suffix": [
-                    "fiacloud.dev"
+                    "fiacloud.dev", "rds.fiacloud.dev", "rdsapi.fiacloud.dev"
                 ],
                 "server": "google"
             }
@@ -166,7 +166,7 @@
             },
             {
                 "domain_suffix": [
-                    "fiacloud.dev"
+                    "fiacloud.dev", "rds.fiacloud.dev", "rdsapi.fiacloud.dev"
                 ],
                 "outbound": "🛰 proxy"
             },
