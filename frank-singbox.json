@@ -10,7 +10,7 @@
                 "tag": "google",
                 "address": "https://8.8.8.8/dns-query",
                 "address_resolver": "dns_resolver",
-                "strategy": "prefer_ip4",
+                "strategy": "prefer_ipv4",
                 "detour": "🛰 proxy"
             },
             {
