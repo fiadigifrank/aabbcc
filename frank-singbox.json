@@ -81,13 +81,15 @@
                 "server": "google"
             },
             {
-                "domain_suffix": [
+                "domain": [
                     "rdsapi.fiacloud.dev"
                 ],
                 "server": "google"
             }
         ],
         "final": "tx",
+        "find_process": true,
+        "auto_detect_interface": true,
         "independent_cache": true
         },
         "route": {
