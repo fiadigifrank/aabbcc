@@ -14,7 +14,7 @@
             },
             {
                 "tag": "tx",
-                "address": "https://120.53.53.53/dns-query",
+                "address": "h3://dns.alidns.com/dns-query",
                 "strategy": "prefer_ipv6",
                 "detour": "direct"
             },
