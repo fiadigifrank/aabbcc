@@ -82,7 +82,7 @@
             },
             {
                 "domain_suffix": [
-                    "rdsapi.fiacloud.dev"
+                    "fiacloud.dev"
                 ],
                 "server": "google"
             }
@@ -138,6 +138,35 @@
             },
             {
                 "rule_set": "geolocation-!cn",
+                "outbound": "🛰 proxy"
+            },
+            {
+                "process_name": [
+                    "TencentMeeting", "NemoDesktop", "ToDesk", "ToDesk_Service",
+                    "WeChat", "Tailscale", "wireguard-go", "Tunnelblick",
+                    "softwareupdated", "kubectl"
+                ],
+                "outbound": "direct"
+            },
+            {
+                "process_name": [
+                    "RustDesk"
+                ],
+                "outbound": "🛰 proxy"
+            },
+            {
+                "domain": [
+                    "accounts.google.com"
+                ],
+                "domain_suffix": [
+                    "sourceforge.net"
+                ],
+                "outbound": "🛰 proxy"
+            },
+            {
+                "domain_suffix": [
+                    "fiacloud.dev"
+                ],
                 "outbound": "🛰 proxy"
             },
             {
