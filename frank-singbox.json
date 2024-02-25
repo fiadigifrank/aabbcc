@@ -88,6 +88,7 @@
             }
         ],
         "final": "google",
+        "reverse_mapping": true,
         "independent_cache": true
         },
         "route": {
