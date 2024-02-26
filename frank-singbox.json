@@ -130,6 +130,10 @@
                 "outbound": "📧 telegram"
             },
             {
+                "rule_set": "🐦 twitter",
+                "outbound": "🐦 twitter"
+            },
+            {
                 "rule_set": "🎧 Spotify",
                 "outbound": "🎧 Spotify"
             },
@@ -219,6 +223,13 @@
                 "type": "remote",
                 "format": "binary",
                 "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/telegram.srs",
+                "download_detour": "🛰 proxy"
+            },
+            {
+                "tag": "🐦 twitter",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/twitter.srs",
                 "download_detour": "🛰 proxy"
             },
             {
@@ -326,6 +337,23 @@
             "🕹️ All-Auto"
             ],
             "default": "🛰 proxy"
+        },
+        {
+            "tag": "🐦 twitter",
+            "type": "selector",
+            "outbounds": [
+            "🛰 proxy",
+            "direct",
+            "🦹 Hy2",
+            "🦹 Hy2-Auto",
+            "🇹🇼 TW",
+            "🇹🇼 TW-Auto",
+            "🇺🇲 US",
+            "🇺🇲 US-Auto",
+            "🕹️ All",
+            "🕹️ All-Auto"
+            ],
+            "default": "🇺🇲 US-Auto"
         },
         {
             "tag": "🎞 youtube",
