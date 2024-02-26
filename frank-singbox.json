@@ -230,7 +230,7 @@
                 "type": "remote",
                 "format": "binary",
                 "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/twitter.srs",
-                "download_detour": "🇹🇼 TW-Auto"
+                "download_detour": "🛰 proxy"
             },
             {
                 "tag": "🎞 youtube",
