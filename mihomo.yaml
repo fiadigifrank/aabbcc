@@ -1,0 +1,253 @@
+######### 锚点 start #######
+# proxy 相关
+# pr: &pr {type: select, proxies: [DIRECT, 🇭🇰HK, 🇹🇼TW, 🇯🇵JP, 🇸🇬SG, 🇺🇲US, 🍱Other, 🕹️All, ♻️Auto]}
+
+#这里是订阅更新和延迟测试相关的
+p: &p {type: http, interval: 3600, health-check: {enable: true, url: http://cp.cloudflare.com/generate_204, interval: 300}}
+
+use: &use
+  type: select
+  use:
+  - WWCloud
+  
+######### 锚点 end #######
+
+# url里填写自己的订阅,名称不能重复,path(文件位置)不能重复
+proxy-providers:
+  WWCloud:
+    <<: *p
+    url: 
+    # url: https://xxxx/api/v1/client/subscribe?token=xxxxx&types=all&types=Hysteria|Hysteria2
+    interval: 3600
+    path: ./proxy_providers/provider1.yaml
+    health-check:
+      enable: true
+      interval: 600
+      # lazy: true
+      url: https://cp.cloudflare.com/generate_204
+
+mixed-port: 7890
+unified-delay: false
+geodata-mode: true
+tcp-concurrent: false
+ipv6: true
+find-process-mode: strict
+global-client-fingerprint: chrome
+
+skip-auth-prefixes: # 设置跳过验证的IP段
+  - 127.0.0.1/8
+  - ::1/128
+lan-allowed-ips: # 允许连接的 IP 地址段，仅作用于 allow-lan 为 true, 默认值为0.0.0.0/0和::/0
+  - 0.0.0.0/0
+  - ::/0
+#lan-disallowed-ips: # 禁止连接的 IP 地址段, 黑名单优先级高于白名单, 默认值为空
+#  - 192.168.0.3/32
+
+allow-lan: true # 允许局域网连接
+bind-address: "*" # 绑定 IP 地址，仅作用于 allow-lan 为 true，'*'表示所有地址
+mode: rule
+log-level: info
+
+#  TCP keep alive interval
+keep-alive-interval: 15
+
+external-controller: 0.0.0.0:9093
+external-ui-name: xd
+#external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+external-ui: /etc/mihomo/ui
+#secret: 12345
+
+geox-url:
+  geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb"
+
+geo-auto-update: true # 是否自动更新 geodata
+geo-update-interval: 12 # 更新间隔，单位：小时
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  sniff:
+    QUIC:
+      ports: [443]
+    TLS:
+      ports: [443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+  sniffing:
+    - tls
+    - http
+
+tun:
+  enable: true
+  tack: system
+  dns-hijack:
+    - 'any:1053'
+  auto-detect-interface: true # 自动识别出口网卡
+  auto-route: true # 配置路由表
+  # inet4-route-address:  # 启用 auto_route 时使用自定义路由而不是默认路由
+  #   - 0.0.0.0/1
+  #   - 128.0.0.0/1
+  # inet6-route-address: # 启用 auto_route 时使用自定义路由而不是默认路由
+  #   - "::/1"
+  #   - "8000::/1"
+
+#ebpf配置
+# ebpf:
+#   auto-redir: # redirect 模式，仅支持 TCP
+#     - eth0
+#   redirect-to-tun: # UDP+TCP 使用该功能请勿启用 auto-route
+#     - eth0
+
+dns:
+  enable: true
+  prefer-h3: true
+  ipv6: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter:
+    - '*'
+    - '+.lan'
+    - '+.local'
+  default-nameserver:
+    - 223.5.5.5
+    #- 114.114.114.114 # default value
+    - tls://223.5.5.5:853 # DNS over TLS
+    # - tls://1.12.12.12:853
+  nameserver:
+    #- 110.40.143.174:5353  # Tecnent
+    #- 114.114.114.114 # default value
+    #- 8.8.8.8 # default value
+    - tls://223.5.5.5:853 # DNS over TLS
+    #- tls://1.12.12.12:853
+    - https://doh.pub/dns-query # DNS over HTTPS
+    #- https://dns.alidns.com/dns-query # 强制 HTTP/3，与 perfer-h3 无关，强制开启 DoH 的 HTTP/3 支持，若不支持将无法使用
+    #- https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true # 指定策略组和使用 HTTP/3
+    #- quic://dns.adguard.com:784
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+  nameserver-policy:
+    "rule-set:private":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    # "rule-set:geolocation-!cn":
+    #   - 'https://dns.cloudflare.com/dns-query#dns'
+    #   - 'https://dns.google/dns-query#dns'
+
+proxies: null
+
+proxy-groups:
+
+  - {name: 🛰Global, type: select, proxies: [DIRECT, 🇭🇰HK, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🕹️All, ♻️Auto, 🦹Hy2]}
+  - {name: 📧Telegram, type: select, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🦹Hy2]}
+  - {name: 🎞Streaming, type: select, proxies: [🛰Global, DIRECT,🇭🇰HK, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
+  - {name: 🤖OpenAI, type: select, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
+  - {name: 💠Microsoft, type: fallback, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
+  - {name: 🐦Twitter, type: fallback, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
+  - {name: 🍎Apple, type: select, proxies: [DIRECT, 🛰Global, 🇹🇼TW, 🇺🇲US, 🦹Hy2]}
+  - {name: 🎧Spotify, type: select, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇸🇬SG, 🇺🇲US, 🦹Hy2]}
+  - {name: 🇨🇳Domestic, type: select, proxies: [🛰Global, DIRECT, 🇭🇰HK, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🕹️All, ♻️Auto]}
+  - {name: 🐟List, type: select, proxies: [🛰Global, DIRECT, 🇭🇰HK, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🕹️All, ♻️Auto, 🦹Hy2]}
+
+#分隔，下面是地区分组
+  - {name: 🦹Hy2, type: select , include-all-providers: true, filter: "(?i)Hy|Hy2|Hysteria|Hysteria2|🦹"}
+  - {name: 🇭🇰HK, <<: *use,filter: "(?i)港|hk|HK|hongkong|hong kong|ND3", type: url-test}
+  - {name: 🇹🇼TW, type: select , include-all-providers: true,  filter: "(?i)台|tw|TW|taiwan|🇹🇼"}
+  - {name: 🇯🇵JP, type: select , include-all-providers: true, filter: "(?i)日本|jp|JP|japan|ND7"}
+  - {name: 🇰🇷KR, type: select , include-all-providers: true, filter: "(?i)KR|Korea|KOR|🇰🇷|首尔|韩|韓|春川"}
+  - {name: 🇺🇲US, type: select , include-all-providers: true, filter: "(?i)美|us|unitedstates|united states|ND4"}
+  - {name: 🇸🇬SG, type: select , include-all-providers: true, filter: "(?i)新|sg|singapore|ND5"}
+  - {name: 🍱Other, type: select , include-all-providers: true, filter: "(?i)🇩🇪|🇬🇧|🇹🇷|🇵🇭|🇦🇺|🇫🇷|🇮🇳|🇨🇦|🇷🇺|🇧🇷|🇲🇾|🇳🇱|🇦🇪|🇿🇦"}
+  - {name: 🕹️All, <<: *use}
+  - {name: ♻️Auto, <<: *use, tolerance: 2, type: url-test}
+
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: yaml}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: yaml}
+rule-providers:
+  private:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml"
+  cn_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml"
+  spotify_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.yaml"
+  opanai_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.yaml"
+  telegram_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.yaml"
+  github_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.yaml"
+  youtube_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.yaml"
+  google_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.yaml"
+  twitter:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.yaml" 
+  Notion:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/notion.yaml"
+  Microsoft:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.yaml"
+  apple: # Apple 在中国大陆可直连的域名列表
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.yaml"
+  # geolocation-!cn:
+  #   <<: *domain
+  #   url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
+
+  cn_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.yaml"
+  google_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml"
+  twitter_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.yaml"
+  telegram_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.yaml"
+
+rules:
+# 抗 DNS 污染
+  - GEOIP,lan,DIRECT,no-resolve
+  - DOMAIN-KEYWORD,facebook,🛰Global
+  - DOMAIN-SUFFIX,fb.me,🛰Global
+  - DOMAIN-SUFFIX,fbcdn.net,🛰Global
+  - DOMAIN-KEYWORD,instagram,🛰Global
+  - RULE-SET,google_domain,🛰Global
+  - RULE-SET,opanai_domain,🤖OpenAI
+  - RULE-SET,twitter,🐦Twitter
+  - RULE-SET,spotify_domain,🎧Spotify
+  - RULE-SET,telegram_domain,📧Telegram
+  - RULE-SET,youtube_domain,🎞Streaming
+  - RULE-SET,apple,🍎Apple
+  - RULE-SET,Notion,🛰Global
+  - RULE-SET,github_domain,🛰Global
+  - RULE-SET,Microsoft,💠Microsoft
+  # - RULE-SET,applications,DIRECT
+  #- RULE-SET,geolocation-!cn,🐟List
+  
+
+  - RULE-SET,google_ip,🛰Global
+  - RULE-SET,telegram_ip,📧Telegram
+  - RULE-SET,twitter_ip,🐦Twitter
+  - RULE-SET,cn_domain,DIRECT
+  - RULE-SET,cn_ip,DIRECT
+  - MATCH,🐟List
