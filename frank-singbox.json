@@ -106,12 +106,12 @@
                 "outbound": "direct"
             },
             {
-                "clash_mode": "Global",
-                "outbound": "🌐 GLOBAL"
-            },
-            {
                 "rule_set": "🎞 youtube",
                 "outbound": "🎞 youtube"
+            },
+            {
+                "clash_mode": "📽️ Netflix",
+                "outbound": "📽️ Netflix"
             },
             {
                 "rule_set": "🤖 openai",
@@ -136,6 +136,10 @@
             {
                 "rule_set": "🎧 Spotify",
                 "outbound": "🎧 Spotify"
+            },
+            {
+                "clash_mode": "Global",
+                "outbound": "🌐 GLOBAL"
             },
             {
                 "rule_set": "🇨🇳 cn",
@@ -202,6 +206,13 @@
                 "type": "remote",
                 "format": "binary",
                 "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/google.srs",
+                "download_detour": "🛰 proxy"
+            },
+            {
+                "tag": "📽️ Netflix",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/mixed/netflix.srs",
                 "download_detour": "🛰 proxy"
             },
             {
@@ -297,6 +308,17 @@
             "🍱 Other-Auto",
             "🕹️ All",
             "🕹️ All-Auto"
+            ],
+            "default": "🛰 proxy"
+        },
+        {
+            "tag": "📽️ Netflix",
+            "type": "selector",
+            "outbounds": [
+            "🛰 proxy",
+            "direct",
+            "🇹🇼 TW",
+            "🇹🇼 TW-Auto"
             ],
             "default": "🛰 proxy"
         },
