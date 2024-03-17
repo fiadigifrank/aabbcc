@@ -16,8 +16,7 @@ use: &use
 proxy-providers:
   WWCloud:
     <<: *p
-    url: 
-    # url: https://xxxx/api/v1/client/subscribe?token=xxxxx&types=all&types=Hysteria|Hysteria2
+    url: ""
     interval: 3600
     path: ./proxy_providers/provider1.yaml
     health-check:
@@ -147,6 +146,7 @@ proxy-groups:
   - {name: 🛰Global, type: select, proxies: [DIRECT, 🇭🇰HK, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🕹️All, ♻️Auto, 🦹Hy2]}
   - {name: 📧Telegram, type: select, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🦹Hy2]}
   - {name: 🎞Streaming, type: select, proxies: [🛰Global, DIRECT,🇭🇰HK, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
+  - {name: 📽️Netflix, type: fallback, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
   - {name: 🤖OpenAI, type: select, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
   - {name: 💠Microsoft, type: fallback, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
   - {name: 🐦Twitter, type: fallback, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
@@ -192,6 +192,9 @@ rule-providers:
   youtube_domain:
     <<: *domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.yaml"
+  ️Netflix_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.yaml"  
   google_domain:
     <<: *domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.yaml"
@@ -237,6 +240,7 @@ rules:
   - RULE-SET,spotify_domain,🎧Spotify
   - RULE-SET,telegram_domain,📧Telegram
   - RULE-SET,youtube_domain,🎞Streaming
+  - RULE-SET,️Netflix_domain,📽️Netflix
   - RULE-SET,apple,🍎Apple
   - RULE-SET,Notion,🛰Global
   - RULE-SET,github_domain,🛰Global
