@@ -146,7 +146,7 @@ proxy-groups:
   - {name: 🛰Global, type: select, proxies: [DIRECT, 🇭🇰HK, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🕹️All, ♻️Auto, 🦹Hy2]}
   - {name: 📧Telegram, type: select, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🦹Hy2]}
   - {name: 🎞Streaming, type: select, proxies: [🛰Global, DIRECT,🇭🇰HK, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
-  - {name: 📽️Netflix, type: fallback, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
+  - {name: 📽️Netflix, type: select, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
   - {name: 🤖OpenAI, type: select, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
   - {name: 💠Microsoft, type: fallback, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
   - {name: 🐦Twitter, type: fallback, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
@@ -194,7 +194,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.yaml"
   ️Netflix_domain:
     <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.yaml"  
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.yaml"
   google_domain:
     <<: *domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.yaml"
