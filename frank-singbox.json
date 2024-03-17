@@ -110,7 +110,7 @@
                 "outbound": "🎞 youtube"
             },
             {
-                "clash_mode": "📽️ Netflix",
+                "rule_set": "📽️ Netflix",
                 "outbound": "📽️ Netflix"
             },
             {
