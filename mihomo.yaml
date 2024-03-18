@@ -139,7 +139,7 @@ dns:
     #   - 'https://dns.cloudflare.com/dns-query#dns'
     #   - 'https://dns.google/dns-query#dns'
 
-proxies: null
+proxies:
 
 proxy-groups:
 
