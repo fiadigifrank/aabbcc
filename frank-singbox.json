@@ -110,6 +110,10 @@
                 "outbound": "🎞 youtube"
             },
             {
+                "rule_set": "💾 Dropbox",
+                "outbound": "💾 Dropbox"
+            },
+            {
                 "rule_set": "📽️ Netflix",
                 "outbound": "📽️ Netflix"
             },
@@ -202,6 +206,13 @@
                 "download_detour": "🛰 proxy"
             },
             {
+                "tag": "💾 Dropbox",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/dropbox.srs",
+                "download_detour": "🛰 proxy"
+            },
+            {
                 "tag": "G google",
                 "type": "remote",
                 "format": "binary",
@@ -288,6 +299,31 @@
         },
         {
             "tag": "G google",
+            "type": "selector",
+            "outbounds": [
+            "🛰 proxy",
+            "direct",
+            "🦹 Hy2",
+            "🦹 Hy2-Auto",
+            "🇰🇷 KR",
+            "🇰🇷 KR-Auto",
+            "🇹🇼 TW",
+            "🇹🇼 TW-Auto",
+            "🇯🇵 JP",
+            "🇯🇵 JP-Auto",
+            "🇸🇬 SG",
+            "🇸🇬 SG-Auto",
+            "🇺🇲 US",
+            "🇺🇲 US-Auto",
+            "🍱 Other",
+            "🍱 Other-Auto",
+            "🕹️ All",
+            "🕹️ All-Auto"
+            ],
+            "default": "🛰 proxy"
+        },
+        {
+            "tag": "💾 Dropbox",
             "type": "selector",
             "outbounds": [
             "🛰 proxy",
