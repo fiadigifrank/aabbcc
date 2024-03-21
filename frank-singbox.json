@@ -734,11 +734,7 @@
             "http_proxy": {
                 "enabled": true,
                 "server": "127.0.0.1",
-                "server_port": 7890,
-                "bypass_domain": [
-                    "seed-sequoia.siri.apple.com",
-                    "sequoia.apple.com"
-                ]
+                "server_port": 7890
             }
             }
         },
