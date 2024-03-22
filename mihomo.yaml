@@ -189,6 +189,9 @@ rule-providers:
   github_domain:
     <<: *domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.yaml"
+  dropbox_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/dropbox.yaml"  
   youtube_domain:
     <<: *domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.yaml"
@@ -220,6 +223,9 @@ rule-providers:
   google_ip:
     <<: *ip
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml"
+  netflix_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.yaml"
   twitter_ip:
     <<: *ip
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.yaml"
@@ -236,6 +242,7 @@ rules:
   - DOMAIN-KEYWORD,instagram,🛰Global
   - RULE-SET,google_domain,🛰Global
   - RULE-SET,opanai_domain,🤖OpenAI
+  - RULE-SET,dropbox_domain,🛰Global
   - RULE-SET,twitter,🐦Twitter
   - RULE-SET,spotify_domain,🎧Spotify
   - RULE-SET,telegram_domain,📧Telegram
@@ -251,6 +258,7 @@ rules:
 
   - RULE-SET,google_ip,🛰Global
   - RULE-SET,telegram_ip,📧Telegram
+  - RULE-SET,netflix_ip,📽️Netflix
   - RULE-SET,twitter_ip,🐦Twitter
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,cn_ip,DIRECT
