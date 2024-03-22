@@ -122,6 +122,10 @@
                 "outbound": "🤖 openai"
             },
             {
+                "rule_set": "🍀 Naver",
+                "outbound": "🍀 Naver"
+            },
+            {
                 "rule_set": "G google",
                 "outbound": "G google"
             },
@@ -169,64 +173,10 @@
             },
             {
                 "domain": [
-                    "accounts.google.com",
-                    "grafolio.com",
-                    "naver.com",
-                    "naver.jp",
-                    "naver.net",
-                    "navercorp.com",
-                    "plug.game",
-                    "pstatic.net",
-                    "webtoons.com",
-                    "linemobile.com",
-                    "lineshoppingseller.com",
-                    "line-apps-beta.com",
-                    "line-apps-rc.com",
-                    "line-apps.com",
-                    "line-beta.me",
-                    "line-cdn.net",
-                    "line.biz",
-                    "nhncorp.jp",
-                    "lin.ee",
-                    "line-scdn.net",
-                    "linecorp.com",
-                    "linefriends.com",
-                    "linetv.tw",
-                    "linegame.jp",
-                    "gcld-line.com",
-                    "linemyshop.com",
-                    "line.me",
-                    "linefriends.com.tw"
+                    "accounts.google.com"
                 ],
                 "domain_suffix": [
-                    "sourceforge.net",
-                    ".grafolio.com",
-                    ".naver.com",
-                    ".naver.jp",
-                    ".naver.net",
-                    ".navercorp.com",
-                    ".plug.game",
-                    ".pstatic.net",
-                    ".webtoons.com",
-                    ".linemobile.com",
-                    ".lineshoppingseller.com",
-                    ".line-apps-beta.com",
-                    ".line-apps-rc.com",
-                    ".line-apps.com",
-                    ".line-beta.me",
-                    ".line-cdn.net",
-                    ".line.biz",
-                    ".nhncorp.jp",
-                    ".lin.ee",
-                    ".line-scdn.net",
-                    ".linecorp.com",
-                    ".linefriends.com",
-                    ".linetv.tw",
-                    ".linegame.jp",
-                    ".gcld-line.com",
-                    ".linemyshop.com",
-                    ".line.me",
-                    ".linefriends.com.tw"
+                    "sourceforge.net"
                 ],
                 "outbound": "🛰 proxy"
             },
@@ -292,6 +242,13 @@
                 "type": "remote",
                 "format": "binary",
                 "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs",
+                "download_detour": "🛰 proxy"
+            },
+            {
+                "tag": "🍀 Naver",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/naver.srs",
                 "download_detour": "🛰 proxy"
             },
             {
@@ -516,6 +473,17 @@
             "🕹️ All-Auto"
             ],
             "default": "🛰 proxy"
+        },
+        {
+            "tag": "🍀 Naver",
+            "type": "selector",
+            "outbounds": [
+            "🛰 proxy",
+            "direct",
+            "🇹🇼 TW",
+            "🇹🇼 TW-Auto"
+            ],
+            "default": "🇹🇼 TW-Auto"
         },
         {
             "tag": "🎧 Spotify",
