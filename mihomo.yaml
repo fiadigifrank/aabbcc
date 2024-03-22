@@ -146,6 +146,7 @@ proxy-groups:
   - {name: 🛰Global, type: select, proxies: [DIRECT, 🇭🇰HK, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🕹️All, ♻️Auto, 🦹Hy2]}
   - {name: 📧Telegram, type: select, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🦹Hy2]}
   - {name: 🎞Streaming, type: select, proxies: [🛰Global, DIRECT,🇭🇰HK, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
+  - {name: 💾Dropbox, type: select, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇸🇬SG, 🦹Hy2]}
   - {name: 📽️Netflix, type: select, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
   - {name: 🤖OpenAI, type: select, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
   - {name: 💠Microsoft, type: fallback, proxies: [🛰Global, DIRECT, 🇹🇼TW, 🇯🇵JP, 🇰🇷KR, 🇸🇬SG, 🇺🇲US, 🍱Other, 🦹Hy2]}
@@ -242,7 +243,7 @@ rules:
   - DOMAIN-KEYWORD,instagram,🛰Global
   - RULE-SET,google_domain,🛰Global
   - RULE-SET,opanai_domain,🤖OpenAI
-  - RULE-SET,dropbox_domain,🛰Global
+  - RULE-SET,dropbox_domain,💾Dropbox
   - RULE-SET,twitter,🐦Twitter
   - RULE-SET,spotify_domain,🎧Spotify
   - RULE-SET,telegram_domain,📧Telegram
