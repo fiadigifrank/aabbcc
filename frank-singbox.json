@@ -10,20 +10,17 @@
                 "tag": "google",
                 "address": "https://8.8.8.8/dns-query",
                 "address_resolver": "dns_resolver",
-                "strategy": "prefer_ipv4",
                 "detour": "🛰 proxy"
             },
             {
                 "tag": "tx",
-                "address": "https://223.5.5.5/dns-query",
+                "address": "h3://dns.alidns.com/dns-query",
                 "address_resolver": "dns_resolver",
-                "strategy": "prefer_ipv4",
                 "detour": "direct"
             },
             {
                 "tag": "dns_resolver",
                 "address": "223.5.5.5",
-                "strategy": "prefer_ipv4",
                 "detour": "direct"
             },
             {
