@@ -135,9 +135,9 @@ dns:
     "rule-set:private":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
-    # "rule-set:geolocation-!cn":
-    #   - 'https://dns.cloudflare.com/dns-query#dns'
-    #   - 'https://dns.google/dns-query#dns'
+    "rule-set:geolocation-!cn":
+      - 'https://dns.cloudflare.com/dns-query#dns'
+      - 'https://dns.google/dns-query#dns'
 
 proxies:
 
