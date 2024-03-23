@@ -126,7 +126,7 @@ dns:
     - tls://223.5.5.5:853 # DNS over TLS
     #- tls://1.12.12.12:853
     - https://doh.pub/dns-query # DNS over HTTPS
-    #- https://dns.alidns.com/dns-query # 强制 HTTP/3，与 perfer-h3 无关，强制开启 DoH 的 HTTP/3 支持，若不支持将无法使用
+    - https://dns.alidns.com/dns-query # 强制 HTTP/3，与 perfer-h3 无关，强制开启 DoH 的 HTTP/3 支持，若不支持将无法使用
     #- https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true # 指定策略组和使用 HTTP/3
     #- quic://dns.adguard.com:784
   proxy-server-nameserver:
@@ -135,9 +135,9 @@ dns:
     "rule-set:private":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
-    "rule-set:geolocation-!cn":
-      - 'https://dns.cloudflare.com/dns-query#dns'
-      - 'https://dns.google/dns-query#dns'
+    # "rule-set:geolocation-!cn":
+    #    - 'https://dns.cloudflare.com/dns-query#dns'
+    #    - 'https://dns.google/dns-query#dns'
 
 proxies:
 
@@ -218,6 +218,9 @@ rule-providers:
   apple: # Apple 在中国大陆可直连的域名列表
     <<: *domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.yaml"
+  applications:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/meta-ruleset/applications.yaml"
   # geolocation-!cn:
   #   <<: *domain
   #   url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
@@ -258,7 +261,7 @@ rules:
   - RULE-SET,Notion,🛰Global
   - RULE-SET,github_domain,🛰Global
   - RULE-SET,Microsoft,💠Microsoft
-  # - RULE-SET,applications,DIRECT
+  - RULE-SET,applications,DIRECT
   #- RULE-SET,geolocation-!cn,🐟List
   
 
