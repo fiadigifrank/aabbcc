@@ -696,7 +696,6 @@
             "stack": "system",
             "auto_route": true,
             "sniff": true,
-            "endpoint_independent_nat": false,
             "udp_timeout": "5m",
             "sniff_override_destination": false,
             "platform": {
