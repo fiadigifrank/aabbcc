@@ -176,6 +176,12 @@ rule-providers:
   private:
     <<: *domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml"
+  fk_cn:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/meta-ruleset/fk-cn.yaml"
+  fk_!cn:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/meta-ruleset/fk-!cn.yaml"
   cn_domain:
     <<: *domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml"
@@ -248,6 +254,8 @@ rules:
   - DOMAIN-SUFFIX,fb.me,🛰Global
   - DOMAIN-SUFFIX,fbcdn.net,🛰Global
   - DOMAIN-KEYWORD,instagram,🛰Global
+  - RULE-SET,fk_!cn,🛰Global
+  - RULE-SET,fk_cn,DIRECT
   - RULE-SET,google_domain,🛰Global
   - RULE-SET,opanai_domain,🤖OpenAI
   - RULE-SET,dropbox_domain,💾Dropbox
