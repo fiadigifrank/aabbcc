@@ -149,7 +149,11 @@
                 "outbound": "🌐 GLOBAL"
             },
             {
-                "rule_set": "🇨🇳 cn",
+                "rule_set": "🇨🇳 cn-site",
+                "outbound": "🇨🇳 cn"
+            },
+            {
+                "rule_set": "🇨🇳 cn-ip",
                 "outbound": "🇨🇳 cn"
             },
             {
@@ -202,10 +206,17 @@
                 "download_detour": "🛰 proxy"
             },
             {
-                "tag": "🇨🇳 cn",
+                "tag": "🇨🇳 cn-site",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/cn.srs",
+                "download_detour": "🛰 proxy"
+            },
+            {
+                "tag": "🇨🇳 cn-ip",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cn.srs",
                 "download_detour": "🛰 proxy"
             },
             {
@@ -500,21 +511,7 @@
             "type": "selector",
             "outbounds": [
             "🛰 proxy",
-            "direct",
-            "🦹 Hy2",
-            "🦹 Hy2-Auto",
-            "🇰🇷 KR",
-            "🇰🇷 KR-Auto",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto",
-            "🇯🇵 JP",
-            "🇯🇵 JP-Auto",
-            "🇸🇬 SG",
-            "🇸🇬 SG-Auto",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto",
-            "🕹️ All",
-            "🕹️ All-Auto"
+            "direct"
             ],
             "default": "direct"
         },
