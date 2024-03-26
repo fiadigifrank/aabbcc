@@ -1,0 +1,13 @@
+{
+    "version": 1,
+    "rules": [
+        {
+        "domain": [
+            "origintechx.com"
+        ],
+        "domain_suffix": [
+            ".origintechx.com"
+        ]
+        }
+    ]
+}

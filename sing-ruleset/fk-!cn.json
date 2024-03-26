@@ -4,11 +4,13 @@
         {
         "domain": [
             "v2ex.com",
-            "nodeseek.com"
+            "nodeseek.com",
+            "origintechx.ai"
         ],
         "domain_suffix": [
             ".v2ex.com",
-            ".nodeseek.com"
+            ".nodeseek.com",
+            ".origintechx.ai"
         ]
         }
     ]
