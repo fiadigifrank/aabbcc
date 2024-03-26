@@ -8,14 +8,14 @@
         "servers": [
             {
                 "tag": "google",
-                "address": "https://8.8.8.8/dns-query",
+                "address": "tls://8.8.8.8",
                 "address_resolver": "dns_resolver",
                 "strategy": "prefer_ipv4",
                 "detour": "🛰 proxy"
             },
             {
                 "tag": "tx",
-                "address": "https://223.5.5.5/dns-query",
+                "address": "tls://223.5.5.5",
                 "address_resolver": "dns_resolver",
                 "strategy": "prefer_ipv4",
                 "detour": "direct"
@@ -297,6 +297,7 @@
         {
             "tag": "🛰 proxy",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🦹 Hy2",    
             "🦹 Hy2-Auto",
@@ -321,6 +322,7 @@
         {
             "tag": "G google",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🛰 proxy",
             "direct",
@@ -346,6 +348,7 @@
         {
             "tag": "💾 Dropbox",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🛰 proxy",
             "direct",
@@ -371,6 +374,7 @@
         {
             "tag": "📽️ Netflix",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🛰 proxy",
             "direct",
@@ -382,6 +386,7 @@
         {
             "tag": "🍎 apple",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🛰 proxy",
             "direct",
@@ -399,6 +404,7 @@
         {
             "tag": "📧 telegram",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🛰 proxy",
             "direct",
@@ -420,6 +426,7 @@
         {
             "tag": "🐦 twitter",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🛰 proxy",
             "direct",
@@ -437,6 +444,7 @@
         {
             "tag": "🎞 youtube",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🛰 proxy",
             "direct",
@@ -462,6 +470,7 @@
         {
             "tag": "🤖 openai",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🛰 proxy",
             "direct",
@@ -487,6 +496,7 @@
         {
             "tag": "🍀 Naver",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🛰 proxy",
             "direct",
@@ -498,6 +508,7 @@
         {
             "tag": "🎧 Spotify",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🛰 proxy",
             "direct",
@@ -509,6 +520,7 @@
         {
             "tag": "🇨🇳 cn",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🛰 proxy",
             "direct"
@@ -518,6 +530,7 @@
         {
             "tag": "🐟 final",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "🛰 proxy",
             "direct",
@@ -543,46 +556,55 @@
         {
             "tag": "🦹 Hy2",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": []
         },
         {
             "tag": "🇰🇷 KR",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": []
         },
         {
             "tag": "🇹🇼 TW",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": []
         },
         {
             "tag": "🇯🇵 JP",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": []
         },
         {
             "tag": "🇸🇬 SG",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": []
         },
         {
             "tag": "🇺🇲 US",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": []
         },
         {
             "tag": "🍱 Other",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": []
         },
         {
             "tag": "🕹️ All",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": []
         },
         {
             "tag": "🦹 Hy2-Auto",
             "type": "urltest",
+            "interrupt_exist_connections": true,
             "outbounds": [],
             "url": "http://cp.cloudflare.com/generate_204",
             "interval": "1m",
@@ -591,6 +613,7 @@
         {
             "tag": "🇰🇷 KR-Auto",
             "type": "urltest",
+            "interrupt_exist_connections": true,
             "outbounds": [],
             "url": "http://cp.cloudflare.com/generate_204",
             "interval": "1m",
@@ -599,6 +622,7 @@
         {
             "tag": "🇹🇼 TW-Auto",
             "type": "urltest",
+            "interrupt_exist_connections": true,
             "outbounds": [],
             "url": "http://cp.cloudflare.com/generate_204",
             "interval": "1m",
@@ -607,6 +631,7 @@
         {
             "tag": "🇯🇵 JP-Auto",   
             "type": "urltest",
+            "interrupt_exist_connections": true,
             "outbounds": [],
             "url": "http://cp.cloudflare.com/generate_204",
             "interval": "1m",
@@ -615,6 +640,7 @@
         {
             "tag": "🇸🇬 SG-Auto",  
             "type": "urltest",
+            "interrupt_exist_connections": true,
             "outbounds": [],
             "url": "http://cp.cloudflare.com/generate_204",
             "interval": "1m",
@@ -623,6 +649,7 @@
         {
             "tag": "🇺🇲 US-Auto",
             "type": "urltest",
+            "interrupt_exist_connections": true,
             "outbounds": [],
             "url": "http://cp.cloudflare.com/generate_204",
             "interval": "1m",
@@ -631,6 +658,7 @@
         {
             "tag": "🍱 Other-Auto",
             "type": "urltest",
+            "interrupt_exist_connections": true,
             "outbounds": [],
             "url": "http://cp.cloudflare.com/generate_204",
             "interval": "1m",
@@ -639,6 +667,7 @@
         {
             "tag": "🕹️ All-Auto",
             "type": "urltest",
+            "interrupt_exist_connections": true,
             "outbounds": [],
             "url": "http://cp.cloudflare.com/generate_204",
             "interval": "1m",
@@ -647,6 +676,7 @@
         {
             "tag": "🌐 GLOBAL",
             "type": "selector",
+            "interrupt_exist_connections": true,
             "outbounds": [
             "direct",
             "🛰 proxy",
