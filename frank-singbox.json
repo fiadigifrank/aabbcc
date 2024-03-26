@@ -157,6 +157,14 @@
                 "outbound": "🇨🇳 cn"
             },
             {
+                "rule_set": "🇨🇳 fk-!cn",
+                "outbound": "🛰 proxy"
+            },
+            {
+                "rule_set": "🇨🇳 fk-cn",
+                "outbound": "🇨🇳 cn"
+            },
+            {
                 "rule_set": "geolocation-!cn",
                 "outbound": "🛰 proxy"
             },
@@ -170,22 +178,6 @@
             },
             {
                 "process_name": [
-                    "RustDesk"
-                ],
-                "outbound": "🛰 proxy"
-            },
-            {
-                "domain": [
-                    "accounts.google.com"
-                ],
-                "domain_suffix": [
-                    "sourceforge.net"
-                ],
-                "outbound": "🛰 proxy"
-            },
-            {
-                "domain_suffix": [
-                    "fiacloud.dev", "rds.fiacloud.dev", "rdsapi.fiacloud.dev"
                 ],
                 "outbound": "🛰 proxy"
             },
@@ -203,6 +195,20 @@
                 "type": "remote",
                 "format": "binary",
                 "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/apple.srs",
+                "download_detour": "🛰 proxy"
+            },
+            {
+                "tag": "🇨🇳 fk-cn",
+                "type": "remote",
+                "format": "source",
+                "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-cn.json",
+                "download_detour": "🛰 proxy"
+            },
+            {
+                "tag": "🇨🇳 fk-!cn",
+                "type": "remote",
+                "format": "source",
+                "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-!cn.json",
                 "download_detour": "🛰 proxy"
             },
             {
