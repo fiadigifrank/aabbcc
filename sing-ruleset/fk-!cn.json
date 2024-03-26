@@ -7,14 +7,16 @@
             "nodeseek.com",
             "origintechx.ai",
             "fiacloud.dev",
-            "sourceforge.net"
+            "sourceforge.net",
+            "torrentmac.net"
         ],
         "domain_suffix": [
             ".v2ex.com",
             ".nodeseek.com",
             ".origintechx.ai",
             ".fiacloud.dev",
-            "sourceforge.net"
+            ".sourceforge.net",
+            ".www.torrentmac.net"
         ]
         }
     ]
