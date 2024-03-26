@@ -1,0 +1,15 @@
+{
+    "version": 1,
+    "rules": [
+        {
+        "domain": [
+            "v2ex.com",
+            "nodeseek.com"
+        ],
+        "domain_suffix": [
+            ".v2ex.com",
+            ".nodeseek.com"
+        ]
+        }
+    ]
+}
