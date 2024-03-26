@@ -168,11 +168,6 @@
                 "outbound": "direct"
             },
             {
-                "process_name": [
-                ],
-                "outbound": "🛰 proxy"
-            },
-            {
                 "inbound": [
                     "tun",
                     "mixed"
