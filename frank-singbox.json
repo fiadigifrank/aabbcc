@@ -186,14 +186,14 @@
             {
                 "tag": "🇨🇳 fk-cn",
                 "type": "remote",
-                "format": "binary",
+                "format": "source",
                 "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-cn.json",
                 "download_detour": "🛰 proxy"
             },
             {
                 "tag": "🇨🇳 fk-!cn",
                 "type": "remote",
-                "format": "binary",
+                "format": "source",
                 "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-!cn.json",
                 "download_detour": "🛰 proxy"
             },
