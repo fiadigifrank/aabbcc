@@ -75,15 +75,6 @@
                 "domain": [
                     "accounts.google.com"
                 ],
-                "domain_suffix": [
-                    "sourceforge.net"
-                ],
-                "server": "google"
-            },
-            {
-                "domain_suffix": [
-                    "fiacloud.dev", "rds.fiacloud.dev", "rdsapi.fiacloud.dev"
-                ],
                 "server": "google"
             }
         ],
@@ -200,14 +191,14 @@
             {
                 "tag": "🇨🇳 fk-cn",
                 "type": "remote",
-                "format": "source",
+                "format": "binary",
                 "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-cn.json",
                 "download_detour": "🛰 proxy"
             },
             {
                 "tag": "🇨🇳 fk-!cn",
                 "type": "remote",
-                "format": "source",
+                "format": "binary",
                 "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-!cn.json",
                 "download_detour": "🛰 proxy"
             },
