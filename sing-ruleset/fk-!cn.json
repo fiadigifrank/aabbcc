@@ -11,7 +11,8 @@
             "sourceforge.net",
             "torrentmac.net",
             "20226899.xyz",
-            "68992022.xyz"
+            "68992022.xyz",
+            "spdio.xyz"
         ],
         "domain_suffix": [
             ".v2ex.com",
@@ -21,8 +22,9 @@
             ".fiacloud.com",
             ".sourceforge.net",
             ".torrentmac.net",
-            "20226899.xyz",
-            "68992022.xyz"
+            ".20226899.xyz",
+            ".68992022.xyz",
+            ".spdio.xyz"
         ]
         }
     ]
