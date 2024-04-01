@@ -104,6 +104,10 @@
                 "outbound": "💾 Dropbox"
             },
             {
+                "rule_set": "🦞 Reddit",
+                "outbound": "🦞 Reddit"
+            },
+            {
                 "rule_set": "📽️ Netflix",
                 "outbound": "📽️ Netflix"
             },
@@ -216,6 +220,13 @@
                 "type": "remote",
                 "format": "binary",
                 "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/dropbox.srs",
+                "download_detour": "🛰 proxy"
+            },
+            {
+                "tag": "🦞 Reddit",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/reddit.srs",
                 "download_detour": "🛰 proxy"
             },
             {
@@ -362,6 +373,24 @@
             "🕹️ All-Auto"
             ],
             "default": "🛰 proxy"
+        },
+        {
+            "tag": "🦞 Reddit",
+            "type": "selector",
+            "interrupt_exist_connections": true,
+            "outbounds": [
+            "🛰 proxy",
+            "direct",
+            "🇹🇼 TW",
+            "🇹🇼 TW-Auto",
+            "🇺🇲 US",
+            "🇺🇲 US-Auto",
+            "🍱 Other",
+            "🍱 Other-Auto",
+            "🕹️ All",
+            "🕹️ All-Auto"
+            ],
+            "default": "🇹🇼 TW-Auto"
         },
         {
             "tag": "📽️ Netflix",
