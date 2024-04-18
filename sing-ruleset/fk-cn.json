@@ -3,10 +3,12 @@
     "rules": [
         {
         "domain": [
-            "origintechx.com"
+            "origintechx.com",
+            "jsdelivr.net"
         ],
         "domain_suffix": [
-            ".origintechx.com"
+            ".origintechx.com",
+            ".jsdelivr.net"
         ]
         }
     ]
