@@ -1,785 +1,790 @@
 {
     "dns": {
-        "fakeip": {
-            "enabled": true,
-            "inet4_range": "198.18.0.0/15",
-            "inet6_range": "fc00::/18"
-        },
-        "servers": [
-            {
+    "fakeip": {
+        "enabled": true,
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
+    },
+    "servers": [
+        {
             "tag": "google",
             "address": "tls://8.8.8.8",
             "address_resolver": "dns_resolver",
             "strategy": "prefer_ipv4",
             "detour": "🛰 proxy"
-            },
-            {
+        },
+        {
             "tag": "tx",
             "address": "tls://223.5.5.5",
             "address_resolver": "dns_resolver",
             "strategy": "prefer_ipv4",
             "detour": "direct"
-            },
-            {
+        },
+        {
+            "tag": "dns_resolver",
+            "address": "223.5.5.5",
+            "detour": "direct"
+        },
+        {
             "tag": "fakeip",
             "address": "fakeip"
-            }
-        ],
-        "rules": [
-            {
-                "outbound": "any",
-                "server": "tx",
-                "disable_cache": true
-            },
-            {
-                "clash_mode": "Direct",
-                "server": "tx"
-            },
-            {
-                "clash_mode": "Global",
-                "server": "fakeip"
-            },
-            {
-                "inbound": "tun",
-                "query_type": [
-                    "A",
-                    "AAAA"
-                ],
-                "server": "fakeip",
-                "rewrite_ttl": 1
-            },
-            {
-                "rule_set": "geolocation-!cn",
-                "server": "google"
-            },
-            {
-                "process_name": [
-                    "TencentMeeting", "NemoDesktop", "ToDesk", "ToDesk_Service",
-                    "WeChat", "Tailscale", "wireguard-go", "Tunnelblick",
-                    "softwareupdated", "kubectl"
-                ],
-                "server": "tx"
-            },
-            {
-                "process_name": [
-                    "RustDesk"
-                ],
-                "server": "google"
-            },
-            {
-                "domain": [
-                    "accounts.google.com"
-                ],
-                "server": "google"
-            }
-        ],
-        "final": "google",
-        "independent_cache": true
-        },
-        "route": {
-        "rules": [
-            {
-                "port": 53,
-                "outbound": "dns-out"
-            },
-            {
-                "ip_is_private": true,
-                "outbound": "direct"
-            },
-            {
-                "clash_mode": "Direct",
-                "outbound": "direct"
-            },
-            {
-                "rule_set": "🎞 youtube",
-                "outbound": "🎞 youtube"
-            },
-            {
-                "rule_set": "💾 Dropbox",
-                "outbound": "💾 Dropbox"
-            },
-            {
-                "rule_set": "🦞 Reddit",
-                "outbound": "🦞 Reddit"
-            },
-            {
-                "rule_set": "📽️ Netflix",
-                "outbound": "📽️ Netflix"
-            },
-            {
-                "rule_set": "🤖 openai",
-                "outbound": "🤖 openai"
-            },
-            {
-                "rule_set": "🍀 Naver",
-                "outbound": "🍀 Naver"
-            },
-            {
-                "rule_set": "G google",
-                "outbound": "G google"
-            },
-            {
-                "rule_set": "🍎 apple",
-                "outbound": "🍎 apple"
-            },
-            {
-                "rule_set": "📧 telegram",
-                "outbound": "📧 telegram"
-            },
-            {
-                "rule_set": "🐦 twitter",
-                "outbound": "🐦 twitter"
-            },
-            {
-                "rule_set": "🎧 Spotify",
-                "outbound": "🎧 Spotify"
-            },
-            {
-                "clash_mode": "Global",
-                "outbound": "🌐 GLOBAL"
-            },
-            {
-                "rule_set": "🇨🇳 cn-site",
-                "outbound": "🇨🇳 cn"
-            },
-            {
-                "rule_set": "🇨🇳 cn-ip",
-                "outbound": "🇨🇳 cn"
-            },
-            {
-                "rule_set": "🇨🇳 fk-!cn",
-                "outbound": "🛰 proxy"
-            },
-            {
-                "rule_set": "🇨🇳 fk-cn",
-                "outbound": "🇨🇳 cn"
-            },
-            {
-                "rule_set": "geolocation-!cn",
-                "outbound": "🛰 proxy"
-            },
-            {
-                "process_name": [
-                    "TencentMeeting", "NemoDesktop", "ToDesk", "ToDesk_Service",
-                    "WeChat", "Tailscale", "wireguard-go", "Tunnelblick",
-                    "softwareupdated", "kubectl"
-                ],
-                "outbound": "direct"
-            },
-            {
-                "inbound": [
-                    "tun",
-                    "mixed"
-                ],
-                "outbound": "loop"
-            }
-        ],
-        "rule_set": [
-            {
-                "tag": "🍎 apple",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/apple.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "🇨🇳 fk-cn",
-                "type": "remote",
-                "format": "source",
-                "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-cn.json",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "🇨🇳 fk-!cn",
-                "type": "remote",
-                "format": "source",
-                "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-!cn.json",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "🇨🇳 cn-site",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/cn.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "🇨🇳 cn-ip",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cn.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "💾 Dropbox",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/dropbox.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "🦞 Reddit",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/reddit.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "G google",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/google.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "📽️ Netflix",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/netflix.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "geolocation-!cn",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-!cn.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "🤖 openai",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "🍀 Naver",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/naver.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "📧 telegram",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/telegram.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "🐦 twitter",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/twitter.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "🎞 youtube",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/youtube.srs",
-                "download_detour": "🛰 proxy"
-            },
-            {
-                "tag": "🎧 Spotify",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/spotify.srs",
-                "download_detour": "🛰 proxy"
-                }
-        ],
-        "final": "🛰 proxy",
-        "auto_detect_interface": true
-        },
-        "outbounds": [
+        }
+    ],
+    "rules": [
         {
-            "tag": "🛰 proxy",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🦹 Hy2",    
-            "🦹 Hy2-Auto",
-            "🇰🇷 KR",
-            "🇰🇷 KR-Auto",    
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto",
-            "🇯🇵 JP",
-            "🇯🇵 JP-Auto",
-            "🇸🇬 SG",
-            "🇸🇬 SG-Auto",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto",
-            "🍱 Other",
-            "🍱 Other-Auto",
-            "🕹️ All",
-            "🕹️ All-Auto",
-            "direct"
-            ],
-            "default": "🕹️ All-Auto"
+            "outbound": "any",
+            "server": "tx",
+            "disable_cache": true
         },
         {
-            "tag": "G google",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct",
-            "🦹 Hy2",
-            "🦹 Hy2-Auto",
-            "🇰🇷 KR",
-            "🇰🇷 KR-Auto",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto",
-            "🇯🇵 JP",
-            "🇯🇵 JP-Auto",
-            "🇸🇬 SG",
-            "🇸🇬 SG-Auto",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto",
-            "🍱 Other",
-            "🍱 Other-Auto",
-            "🕹️ All",
-            "🕹️ All-Auto"
+            "clash_mode": "Direct",
+            "server": "tx"
+        },
+        {
+            "clash_mode": "Global",
+            "server": "fakeip"
+        },
+        {
+            "inbound": "tun",
+            "query_type": [
+                "A",
+                "AAAA"
             ],
-            "default": "🛰 proxy"
+            "server": "fakeip",
+            "rewrite_ttl": 1
+        },
+        {
+            "rule_set": "geolocation-!cn",
+            "server": "google"
+        },
+        {
+            "process_name": [
+                "TencentMeeting", "NemoDesktop", "ToDesk", "ToDesk_Service",
+                "WeChat", "Tailscale", "wireguard-go", "Tunnelblick",
+                "softwareupdated", "kubectl"
+            ],
+            "server": "tx"
+        },
+        {
+            "process_name": [
+                "RustDesk"
+            ],
+            "server": "google"
+        },
+        {
+            "domain": [
+                "accounts.google.com"
+            ],
+            "server": "google"
+        }
+    ],
+    "final": "google",
+    "independent_cache": true
+    },
+    "route": {
+    "rules": [
+        {
+            "port": 53,
+            "outbound": "dns-out"
+        },
+        {
+            "ip_is_private": true,
+            "outbound": "direct"
+        },
+        {
+            "clash_mode": "Direct",
+            "outbound": "direct"
+        },
+        {
+            "rule_set": "🎞 youtube",
+            "outbound": "🎞 youtube"
+        },
+        {
+            "rule_set": "💾 Dropbox",
+            "outbound": "💾 Dropbox"
+        },
+        {
+            "rule_set": "🦞 Reddit",
+            "outbound": "🦞 Reddit"
+        },
+        {
+            "rule_set": "📽️ Netflix",
+            "outbound": "📽️ Netflix"
+        },
+        {
+            "rule_set": "🤖 openai",
+            "outbound": "🤖 openai"
+        },
+        {
+            "rule_set": "🍀 Naver",
+            "outbound": "🍀 Naver"
+        },
+        {
+            "rule_set": "G google",
+            "outbound": "G google"
+        },
+        {
+            "rule_set": "🍎 apple",
+            "outbound": "🍎 apple"
+        },
+        {
+            "rule_set": "📧 telegram",
+            "outbound": "📧 telegram"
+        },
+        {
+            "rule_set": "🐦 twitter",
+            "outbound": "🐦 twitter"
+        },
+        {
+            "rule_set": "🎧 Spotify",
+            "outbound": "🎧 Spotify"
+        },
+        {
+            "clash_mode": "Global",
+            "outbound": "🌐 GLOBAL"
+        },
+        {
+            "rule_set": "🇨🇳 cn-site",
+            "outbound": "🇨🇳 cn"
+        },
+        {
+            "rule_set": "🇨🇳 cn-ip",
+            "outbound": "🇨🇳 cn"
+        },
+        {
+            "rule_set": "🇨🇳 fk-!cn",
+            "outbound": "🛰 proxy"
+        },
+        {
+            "rule_set": "🇨🇳 fk-cn",
+            "outbound": "🇨🇳 cn"
+        },
+        {
+            "rule_set": "geolocation-!cn",
+            "outbound": "🛰 proxy"
+        },
+        {
+            "process_name": [
+                "TencentMeeting", "NemoDesktop", "ToDesk", "ToDesk_Service",
+                "WeChat", "Tailscale", "wireguard-go", "Tunnelblick",
+                "softwareupdated", "kubectl"
+            ],
+            "outbound": "direct"
+        },
+        {
+            "inbound": [
+                "tun",
+                "mixed"
+            ],
+            "outbound": "loop"
+        }
+    ],
+    "rule_set": [
+        {
+            "tag": "🍎 apple",
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/apple.srs",
+            "download_detour": "🛰 proxy"
+        },
+        {
+            "tag": "🇨🇳 fk-cn",
+            "type": "remote",
+            "format": "source",
+            "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-cn.json",
+            "download_detour": "🛰 proxy"
+        },
+        {
+            "tag": "🇨🇳 fk-!cn",
+            "type": "remote",
+            "format": "source",
+            "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-!cn.json",
+            "download_detour": "🛰 proxy"
+        },
+        {
+            "tag": "🇨🇳 cn-site",
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/cn.srs",
+            "download_detour": "🛰 proxy"
+        },
+        {
+            "tag": "🇨🇳 cn-ip",
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cn.srs",
+            "download_detour": "🛰 proxy"
         },
         {
             "tag": "💾 Dropbox",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct",
-            "🦹 Hy2",
-            "🦹 Hy2-Auto",
-            "🇰🇷 KR",
-            "🇰🇷 KR-Auto",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto",
-            "🇯🇵 JP",
-            "🇯🇵 JP-Auto",
-            "🇸🇬 SG",
-            "🇸🇬 SG-Auto",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto",
-            "🍱 Other",
-            "🍱 Other-Auto",
-            "🕹️ All",
-            "🕹️ All-Auto"
-            ],
-            "default": "🛰 proxy"
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/dropbox.srs",
+            "download_detour": "🛰 proxy"
         },
         {
             "tag": "🦞 Reddit",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto",
-            "🍱 Other",
-            "🍱 Other-Auto",
-            "🕹️ All",
-            "🕹️ All-Auto"
-            ],
-            "default": "🇹🇼 TW-Auto"
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/reddit.srs",
+            "download_detour": "🛰 proxy"
+        },
+        {
+            "tag": "G google",
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/google.srs",
+            "download_detour": "🛰 proxy"
         },
         {
             "tag": "📽️ Netflix",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto"
-            ],
-            "default": "🛰 proxy"
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/netflix.srs",
+            "download_detour": "🛰 proxy"
         },
         {
-            "tag": "🍎 apple",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct",
-            "🦹 Hy2",
-            "🦹 Hy2-Auto",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto",
-            "🕹️ All",
-            "🕹️ All-Auto"
-            ],
-            "default": "direct"
-        },
-        {
-            "tag": "📧 telegram",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct",
-            "🦹 Hy2",
-            "🦹 Hy2-Auto",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto",
-            "🇸🇬 SG",
-            "🇸🇬 SG-Auto",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto",
-            "🍱 Other",
-            "🍱 Other-Auto",
-            "🕹️ All",
-            "🕹️ All-Auto"
-            ],
-            "default": "🛰 proxy"
-        },
-        {
-            "tag": "🐦 twitter",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct",
-            "🦹 Hy2",
-            "🦹 Hy2-Auto",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto",
-            "🕹️ All",
-            "🕹️ All-Auto"
-            ],
-            "default": "🇺🇲 US-Auto"
-        },
-        {
-            "tag": "🎞 youtube",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct",
-            "🦹 Hy2",
-            "🦹 Hy2-Auto",
-            "🇰🇷 KR",
-            "🇰🇷 KR-Auto",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto",
-            "🇯🇵 JP",
-            "🇯🇵 JP-Auto",
-            "🇸🇬 SG",
-            "🇸🇬 SG-Auto",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto",
-            "🍱 Other",
-            "🍱 Other-Auto",
-            "🕹️ All",
-            "🕹️ All-Auto"
-            ],
-            "default": "🛰 proxy"
+            "tag": "geolocation-!cn",
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-!cn.srs",
+            "download_detour": "🛰 proxy"
         },
         {
             "tag": "🤖 openai",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct",
-            "🦹 Hy2",
-            "🦹 Hy2-Auto",
-            "🇰🇷 KR",
-            "🇰🇷 KR-Auto",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto",
-            "🇯🇵 JP",
-            "🇯🇵 JP-Auto",
-            "🇸🇬 SG",
-            "🇸🇬 SG-Auto",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto",
-            "🍱 Other",
-            "🍱 Other-Auto",
-            "🕹️ All",
-            "🕹️ All-Auto"
-            ],
-            "default": "🛰 proxy"
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs",
+            "download_detour": "🛰 proxy"
         },
         {
             "tag": "🍀 Naver",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto"
-            ],
-            "default": "🇹🇼 TW-Auto"
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/naver.srs",
+            "download_detour": "🛰 proxy"
+        },
+        {
+            "tag": "📧 telegram",
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/telegram.srs",
+            "download_detour": "🛰 proxy"
+        },
+        {
+            "tag": "🐦 twitter",
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/twitter.srs",
+            "download_detour": "🛰 proxy"
+        },
+        {
+            "tag": "🎞 youtube",
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/youtube.srs",
+            "download_detour": "🛰 proxy"
         },
         {
             "tag": "🎧 Spotify",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto"
-            ],
-            "default": "🇺🇲 US-Auto"
-        },
-        {
-            "tag": "🇨🇳 cn",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct"
-            ],
-            "default": "direct"
-        },
-        {
-            "tag": "🐟 final",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "🛰 proxy",
-            "direct",
-            "🦹 Hy2",
-            "🦹 Hy2-Auto",
-            "🇰🇷 KR",
-            "🇰🇷 KR-Auto",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto",
-            "🇯🇵 JP",
-            "🇯🇵 JP-Auto",
-            "🇸🇬 SG",
-            "🇸🇬 SG-Auto",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto",
-            "🍱 Other",
-            "🍱 Other-Auto",
-            "🕹️ All",
-            "🕹️ All-Auto"
-            ],
-            "default": "🛰 proxy"
-        },
-        {
-            "tag": "🦹 Hy2",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": []
-        },
-        {
-            "tag": "🇰🇷 KR",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": []
-        },
-        {
-            "tag": "🇹🇼 TW",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": []
-        },
-        {
-            "tag": "🇯🇵 JP",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": []
-        },
-        {
-            "tag": "🇸🇬 SG",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": []
-        },
-        {
-            "tag": "🇺🇲 US",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": []
-        },
-        {
-            "tag": "🍱 Other",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": []
-        },
-        {
-            "tag": "🕹️ All",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": []
-        },
-        {
-            "tag": "🦹 Hy2-Auto",
-            "type": "urltest",
-            "interrupt_exist_connections": true,
-            "outbounds": [],
-            "url": "http://cp.cloudflare.com/generate_204",
-            "interval": "1m",
-            "tolerance": 50
-        },
-        {
-            "tag": "🇰🇷 KR-Auto",
-            "type": "urltest",
-            "interrupt_exist_connections": true,
-            "outbounds": [],
-            "url": "http://cp.cloudflare.com/generate_204",
-            "interval": "1m",
-            "tolerance": 50
-        },
-        {
-            "tag": "🇹🇼 TW-Auto",
-            "type": "urltest",
-            "interrupt_exist_connections": true,
-            "outbounds": [],
-            "url": "http://cp.cloudflare.com/generate_204",
-            "interval": "1m",
-            "tolerance": 50
-        },
-        {
-            "tag": "🇯🇵 JP-Auto",   
-            "type": "urltest",
-            "interrupt_exist_connections": true,
-            "outbounds": [],
-            "url": "http://cp.cloudflare.com/generate_204",
-            "interval": "1m",
-            "tolerance": 50
-        },
-        {
-            "tag": "🇸🇬 SG-Auto",  
-            "type": "urltest",
-            "interrupt_exist_connections": true,
-            "outbounds": [],
-            "url": "http://cp.cloudflare.com/generate_204",
-            "interval": "1m",
-            "tolerance": 50
-        },
-        {
-            "tag": "🇺🇲 US-Auto",
-            "type": "urltest",
-            "interrupt_exist_connections": true,
-            "outbounds": [],
-            "url": "http://cp.cloudflare.com/generate_204",
-            "interval": "1m",
-            "tolerance": 50
-        },
-        {
-            "tag": "🍱 Other-Auto",
-            "type": "urltest",
-            "interrupt_exist_connections": true,
-            "outbounds": [],
-            "url": "http://cp.cloudflare.com/generate_204",
-            "interval": "1m",
-            "tolerance": 50
-        },
-        {
-            "tag": "🕹️ All-Auto",
-            "type": "urltest",
-            "interrupt_exist_connections": true,
-            "outbounds": [],
-            "url": "http://cp.cloudflare.com/generate_204",
-            "interval": "1m",
-            "tolerance": 50
-        },
-        {
-            "tag": "🌐 GLOBAL",
-            "type": "selector",
-            "interrupt_exist_connections": true,
-            "outbounds": [
-            "direct",
-            "🛰 proxy",
-            "🦹 Hy2",
-            "🦹 Hy2-Auto",
-            "🇰🇷 KR",
-            "🇰🇷 KR-Auto",
-            "🇹🇼 TW",
-            "🇹🇼 TW-Auto",
-            "🇯🇵 JP",
-            "🇯🇵 JP-Auto",
-            "🇸🇬 SG",
-            "🇸🇬 SG-Auto",
-            "🇺🇲 US",
-            "🇺🇲 US-Auto",
-            "🍱 Other",
-            "🍱 Other-Auto",
-            "🕹️ All",
-            "🕹️ All-Auto"
-            ],
-            "default": "direct"
-        },
-        {
-            "tag": "direct",
-            "type": "direct"
-        },
-        {
-            "tag": "dns-out",
-            "type": "dns"
-        },
-        {
-            "tag": "loop",
-            "type": "socks",
-            "server": "127.0.0.1",
-            "server_port": 7891
-        }
-        ],
-        "inbounds": [
-        {
-            "tag": "tun",
-            "type": "tun",
-            "inet4_address": "172.19.0.0/30",
-            "inet6_address": "fdfe:dcba:9876::0/126",
-            "stack": "system",
-            "auto_route": true,
-            "sniff": true,
-            "udp_timeout": "5m",
-            "sniff_override_destination": false,
-            "platform": {
-            "http_proxy": {
-                "enabled": true,
-                "server": "127.0.0.1",
-                "server_port": 7890
+            "type": "remote",
+            "format": "binary",
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/spotify.srs",
+            "download_detour": "🛰 proxy"
             }
-            }
-        },
-        {
-            "tag": "mixed",
-            "type": "mixed",
-            "listen": "127.0.0.1",
-            "listen_port": 7890,
-            "sniff": true
-        },
-        {
-            "tag": "loop-in",
-            "type": "mixed",
-            "listen": "127.0.0.1",
-            "listen_port": 7891,
-            "sniff": true,
-            "domain_strategy": "prefer_ipv4"
-        }
+    ],
+    "final": "🛰 proxy",
+    "auto_detect_interface": true
+    },
+    "outbounds": [
+    {
+        "tag": "🛰 proxy",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🦹 Hy2",    
+        "🦹 Hy2-Auto",
+        "🇰🇷 KR",
+        "🇰🇷 KR-Auto",    
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto",
+        "🇯🇵 JP",
+        "🇯🇵 JP-Auto",
+        "🇸🇬 SG",
+        "🇸🇬 SG-Auto",
+        "🇺🇲 US",
+        "🇺🇲 US-Auto",
+        "🍱 Other",
+        "🍱 Other-Auto",
+        "🕹️ All",
+        "🕹️ All-Auto",
+        "direct"
         ],
-        "experimental": {
-        "clash_api": {
-            "external_controller": "127.0.0.1:9092",
-            "external_ui": "ui",
-            "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
-            "external_ui_download_detour": "🛰 proxy"
-        },
-        "cache_file": {
+        "default": "🕹️ All-Auto"
+    },
+    {
+        "tag": "G google",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct",
+        "🦹 Hy2",
+        "🦹 Hy2-Auto",
+        "🇰🇷 KR",
+        "🇰🇷 KR-Auto",
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto",
+        "🇯🇵 JP",
+        "🇯🇵 JP-Auto",
+        "🇸🇬 SG",
+        "🇸🇬 SG-Auto",
+        "🇺🇲 US",
+        "🇺🇲 US-Auto",
+        "🍱 Other",
+        "🍱 Other-Auto",
+        "🕹️ All",
+        "🕹️ All-Auto"
+        ],
+        "default": "🛰 proxy"
+    },
+    {
+        "tag": "💾 Dropbox",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct",
+        "🦹 Hy2",
+        "🦹 Hy2-Auto",
+        "🇰🇷 KR",
+        "🇰🇷 KR-Auto",
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto",
+        "🇯🇵 JP",
+        "🇯🇵 JP-Auto",
+        "🇸🇬 SG",
+        "🇸🇬 SG-Auto",
+        "🇺🇲 US",
+        "🇺🇲 US-Auto",
+        "🍱 Other",
+        "🍱 Other-Auto",
+        "🕹️ All",
+        "🕹️ All-Auto"
+        ],
+        "default": "🛰 proxy"
+    },
+    {
+        "tag": "🦞 Reddit",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct",
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto",
+        "🇺🇲 US",
+        "🇺🇲 US-Auto",
+        "🍱 Other",
+        "🍱 Other-Auto",
+        "🕹️ All",
+        "🕹️ All-Auto"
+        ],
+        "default": "🇹🇼 TW-Auto"
+    },
+    {
+        "tag": "📽️ Netflix",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct",
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto"
+        ],
+        "default": "🛰 proxy"
+    },
+    {
+        "tag": "🍎 apple",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct",
+        "🦹 Hy2",
+        "🦹 Hy2-Auto",
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto",
+        "🇺🇲 US",
+        "🇺🇲 US-Auto",
+        "🕹️ All",
+        "🕹️ All-Auto"
+        ],
+        "default": "direct"
+    },
+    {
+        "tag": "📧 telegram",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct",
+        "🦹 Hy2",
+        "🦹 Hy2-Auto",
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto",
+        "🇸🇬 SG",
+        "🇸🇬 SG-Auto",
+        "🇺🇲 US",
+        "🇺🇲 US-Auto",
+        "🍱 Other",
+        "🍱 Other-Auto",
+        "🕹️ All",
+        "🕹️ All-Auto"
+        ],
+        "default": "🛰 proxy"
+    },
+    {
+        "tag": "🐦 twitter",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct",
+        "🦹 Hy2",
+        "🦹 Hy2-Auto",
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto",
+        "🇺🇲 US",
+        "🇺🇲 US-Auto",
+        "🕹️ All",
+        "🕹️ All-Auto"
+        ],
+        "default": "🇺🇲 US-Auto"
+    },
+    {
+        "tag": "🎞 youtube",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct",
+        "🦹 Hy2",
+        "🦹 Hy2-Auto",
+        "🇰🇷 KR",
+        "🇰🇷 KR-Auto",
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto",
+        "🇯🇵 JP",
+        "🇯🇵 JP-Auto",
+        "🇸🇬 SG",
+        "🇸🇬 SG-Auto",
+        "🇺🇲 US",
+        "🇺🇲 US-Auto",
+        "🍱 Other",
+        "🍱 Other-Auto",
+        "🕹️ All",
+        "🕹️ All-Auto"
+        ],
+        "default": "🛰 proxy"
+    },
+    {
+        "tag": "🤖 openai",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct",
+        "🦹 Hy2",
+        "🦹 Hy2-Auto",
+        "🇰🇷 KR",
+        "🇰🇷 KR-Auto",
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto",
+        "🇯🇵 JP",
+        "🇯🇵 JP-Auto",
+        "🇸🇬 SG",
+        "🇸🇬 SG-Auto",
+        "🇺🇲 US",
+        "🇺🇲 US-Auto",
+        "🍱 Other",
+        "🍱 Other-Auto",
+        "🕹️ All",
+        "🕹️ All-Auto"
+        ],
+        "default": "🛰 proxy"
+    },
+    {
+        "tag": "🍀 Naver",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct",
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto"
+        ],
+        "default": "🇹🇼 TW-Auto"
+    },
+    {
+        "tag": "🎧 Spotify",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct",
+        "🇺🇲 US",
+        "🇺🇲 US-Auto"
+        ],
+        "default": "🇺🇲 US-Auto"
+    },
+    {
+        "tag": "🇨🇳 cn",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct"
+        ],
+        "default": "direct"
+    },
+    {
+        "tag": "🐟 final",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "🛰 proxy",
+        "direct",
+        "🦹 Hy2",
+        "🦹 Hy2-Auto",
+        "🇰🇷 KR",
+        "🇰🇷 KR-Auto",
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto",
+        "🇯🇵 JP",
+        "🇯🇵 JP-Auto",
+        "🇸🇬 SG",
+        "🇸🇬 SG-Auto",
+        "🇺🇲 US",
+        "🇺🇲 US-Auto",
+        "🍱 Other",
+        "🍱 Other-Auto",
+        "🕹️ All",
+        "🕹️ All-Auto"
+        ],
+        "default": "🛰 proxy"
+    },
+    {
+        "tag": "🦹 Hy2",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": []
+    },
+    {
+        "tag": "🇰🇷 KR",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": []
+    },
+    {
+        "tag": "🇹🇼 TW",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": []
+    },
+    {
+        "tag": "🇯🇵 JP",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": []
+    },
+    {
+        "tag": "🇸🇬 SG",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": []
+    },
+    {
+        "tag": "🇺🇲 US",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": []
+    },
+    {
+        "tag": "🍱 Other",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": []
+    },
+    {
+        "tag": "🕹️ All",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": []
+    },
+    {
+        "tag": "🦹 Hy2-Auto",
+        "type": "urltest",
+        "interrupt_exist_connections": true,
+        "outbounds": [],
+        "url": "http://cp.cloudflare.com/generate_204",
+        "interval": "1m",
+        "tolerance": 50
+    },
+    {
+        "tag": "🇰🇷 KR-Auto",
+        "type": "urltest",
+        "interrupt_exist_connections": true,
+        "outbounds": [],
+        "url": "http://cp.cloudflare.com/generate_204",
+        "interval": "1m",
+        "tolerance": 50
+    },
+    {
+        "tag": "🇹🇼 TW-Auto",
+        "type": "urltest",
+        "interrupt_exist_connections": true,
+        "outbounds": [],
+        "url": "http://cp.cloudflare.com/generate_204",
+        "interval": "1m",
+        "tolerance": 50
+    },
+    {
+        "tag": "🇯🇵 JP-Auto",   
+        "type": "urltest",
+        "interrupt_exist_connections": true,
+        "outbounds": [],
+        "url": "http://cp.cloudflare.com/generate_204",
+        "interval": "1m",
+        "tolerance": 50
+    },
+    {
+        "tag": "🇸🇬 SG-Auto",  
+        "type": "urltest",
+        "interrupt_exist_connections": true,
+        "outbounds": [],
+        "url": "http://cp.cloudflare.com/generate_204",
+        "interval": "1m",
+        "tolerance": 50
+    },
+    {
+        "tag": "🇺🇲 US-Auto",
+        "type": "urltest",
+        "interrupt_exist_connections": true,
+        "outbounds": [],
+        "url": "http://cp.cloudflare.com/generate_204",
+        "interval": "1m",
+        "tolerance": 50
+    },
+    {
+        "tag": "🍱 Other-Auto",
+        "type": "urltest",
+        "interrupt_exist_connections": true,
+        "outbounds": [],
+        "url": "http://cp.cloudflare.com/generate_204",
+        "interval": "1m",
+        "tolerance": 50
+    },
+    {
+        "tag": "🕹️ All-Auto",
+        "type": "urltest",
+        "interrupt_exist_connections": true,
+        "outbounds": [],
+        "url": "http://cp.cloudflare.com/generate_204",
+        "interval": "1m",
+        "tolerance": 50
+    },
+    {
+        "tag": "🌐 GLOBAL",
+        "type": "selector",
+        "interrupt_exist_connections": true,
+        "outbounds": [
+        "direct",
+        "🛰 proxy",
+        "🦹 Hy2",
+        "🦹 Hy2-Auto",
+        "🇰🇷 KR",
+        "🇰🇷 KR-Auto",
+        "🇹🇼 TW",
+        "🇹🇼 TW-Auto",
+        "🇯🇵 JP",
+        "🇯🇵 JP-Auto",
+        "🇸🇬 SG",
+        "🇸🇬 SG-Auto",
+        "🇺🇲 US",
+        "🇺🇲 US-Auto",
+        "🍱 Other",
+        "🍱 Other-Auto",
+        "🕹️ All",
+        "🕹️ All-Auto"
+        ],
+        "default": "direct"
+    },
+    {
+        "tag": "direct",
+        "type": "direct"
+    },
+    {
+        "tag": "dns-out",
+        "type": "dns"
+    },
+    {
+        "tag": "loop",
+        "type": "socks",
+        "server": "127.0.0.1",
+        "server_port": 7891
+    }
+    ],
+    "inbounds": [
+    {
+        "tag": "tun",
+        "type": "tun",
+        "inet4_address": "172.19.0.0/30",
+        "inet6_address": "fdfe:dcba:9876::0/126",
+        "stack": "system",
+        "auto_route": true,
+        "sniff": true,
+        "udp_timeout": "5m",
+        "sniff_override_destination": false,
+        "platform": {
+        "http_proxy": {
             "enabled": true,
-            "store_fakeip": true
+            "server": "127.0.0.1",
+            "server_port": 7890
         }
-        },
-        "log": {
-        "disabled": false,
-        "level": "debug",
-        "timestamp": true
         }
+    },
+    {
+        "tag": "mixed",
+        "type": "mixed",
+        "listen": "127.0.0.1",
+        "listen_port": 7890,
+        "sniff": true
+    },
+    {
+        "tag": "loop-in",
+        "type": "mixed",
+        "listen": "127.0.0.1",
+        "listen_port": 7891,
+        "sniff": true,
+        "domain_strategy": "prefer_ipv4"
+    }
+    ],
+    "experimental": {
+    "clash_api": {
+        "external_controller": "127.0.0.1:9092",
+        "external_ui": "ui",
+        "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+        "external_ui_download_detour": "🛰 proxy"
+    },
+    "cache_file": {
+        "enabled": true,
+        "store_fakeip": true
+    }
+    },
+    "log": {
+    "disabled": false,
+    "level": "debug",
+    "timestamp": true
+    }
 }
