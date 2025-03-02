@@ -1,21 +1,18 @@
 {
         "dns": {
-        "fakeip": {
-            "enabled": true,
-            "inet4_range": "198.18.0.0/15",
-            "inet6_range": "fc00::/18"
-        },
         "servers": [
             {
                 "tag": "google",
-                "address": "tls://8.8.8.8",
+                "type": "tls",
+                "server": "8.8.8.8",
                 "address_resolver": "dns_resolver",
                 "strategy": "prefer_ipv4",
                 "detour": "🛰 proxy"
             },
             {
                 "tag": "tx",
-                "address": "tls://223.5.5.5",
+                "type": "tls",
+                "server": "223.5.5.5",
                 "address_resolver": "dns_resolver",
                 "strategy": "prefer_ipv4",
                 "detour": "direct"
@@ -26,8 +23,10 @@
                 "detour": "direct"
             },
             {
+                "type": "fakeip",
                 "tag": "fakeip",
-                "address": "fakeip"
+                "inet4_range": "198.18.0.0/15",
+                "inet6_range": "fc00::/18"
             }
         ],
         "rules": [
@@ -739,8 +738,20 @@
         {
             "tag": "tun",
             "type": "tun",
-            "inet4_address": "172.19.0.0/30",
-            "inet6_address": "fdfe:dcba:9876::0/126",
+            "address":[
+                "172.19.0.0/30",
+                "fdfe:dcba:9876::0/126"
+            ],
+            "route_address": [
+                "0.0.0.0/1",
+                "128.0.0.0/1",
+                "::/1",
+                "8000::/1"
+            ],
+            "route_exclude_address": [
+                "192.168.0.0/16",
+                "fc00::/7"
+            ],
             "stack": "system",
             "auto_route": true,
             "sniff": true,
