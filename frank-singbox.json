@@ -734,20 +734,8 @@
         {
             "tag": "tun",
             "type": "tun",
-            "address":[
-                "172.19.0.0/30",
-                "fdfe:dcba:9876::0/126"
-            ],
-            "route_address": [
-                "0.0.0.0/1",
-                "128.0.0.0/1",
-                "::/1",
-                "8000::/1"
-            ],
-            "route_exclude_address": [
-                "192.168.0.0/16",
-                "fc00::/7"
-            ],
+            "inet4_address": "172.19.0.0/30",
+            "inet6_address": "fdfe:dcba:9876::0/126",
             "stack": "system",
             "auto_route": true,
             "sniff": true,
