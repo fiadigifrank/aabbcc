@@ -1,23 +1,16 @@
 {
     "dns": {
-    "fakeip": {
-        "enabled": true,
-        "inet4_range": "198.18.0.0/15",
-        "inet6_range": "fc00::/18"
-    },
-    "servers": [
+        "servers": [
         {
             "tag": "google",
-            "address": "tls://8.8.8.8",
-            "address_resolver": "dns_resolver",
-            "strategy": "prefer_ipv4",
+            "type": "tls",
+            "server": "8.8.8.8",
             "detour": "🛰 proxy"
         },
         {
             "tag": "tx",
-            "address": "tls://223.5.5.5",
-            "address_resolver": "dns_resolver",
-            "strategy": "prefer_ipv4",
+            "type": "https",
+            "server": "223.5.5.5",
             "detour": "direct"
         },
         {
@@ -27,7 +20,9 @@
         },
         {
             "tag": "fakeip",
-            "address": "fakeip"
+            "type": "fakeip",
+            "inet4_range": "198.18.0.0/15",
+            "inet6_range": "fc00::/18"
         }
     ],
     "rules": [
@@ -38,18 +33,20 @@
         },
         {
             "clash_mode": "Direct",
+            "action": "route",
             "server": "tx"
         },
         {
             "clash_mode": "Global",
+            "action": "route",
             "server": "fakeip"
         },
         {
-            "inbound": "tun",
             "query_type": [
                 "A",
                 "AAAA"
             ],
+            "action": "route",
             "server": "fakeip",
             "rewrite_ttl": 1
         },
@@ -82,85 +79,126 @@
     "independent_cache": true
     },
     "route": {
+        "default_domain_resolver": {
+            "server": "tx"
+        },
     "rules": [
         {
-            "port": 53,
-            "outbound": "dns-out"
+            "action": "sniff",
+            "sniffer": [
+                "http",
+                "tls",
+                "quic",
+                "dns"
+            ],
+            "timeout": "500ms"
+        },
+        {
+            "type": "logical",
+            "mode": "or",
+            "rules": [
+            {
+                "port": 53
+            },
+            {
+                "protocol": "dns"
+            }
+            ],
+            "action": "hijack-dns"
         },
         {
             "ip_is_private": true,
+            "action": "route",
             "outbound": "direct"
         },
         {
             "clash_mode": "Direct",
+            "action": "route",
             "outbound": "direct"
         },
         {
             "rule_set": "🎞 youtube",
+            "action": "route",
             "outbound": "🎞 youtube"
         },
         {
             "rule_set": "💾 Dropbox",
+            "action": "route",
             "outbound": "💾 Dropbox"
         },
         {
             "rule_set": "🦞 Reddit",
+            "action": "route",
             "outbound": "🦞 Reddit"
         },
         {
             "rule_set": "📽️ Netflix",
+            "action": "route",
             "outbound": "📽️ Netflix"
         },
         {
             "rule_set": "🤖 openai",
+            "action": "route",
             "outbound": "🤖 openai"
         },
         {
             "rule_set": "🍀 Naver",
+            "action": "route",
             "outbound": "🍀 Naver"
         },
         {
             "rule_set": "G google",
+            "action": "route",
             "outbound": "G google"
         },
         {
             "rule_set": "🍎 apple",
+            "action": "route",
             "outbound": "🍎 apple"
         },
         {
             "rule_set": "📧 telegram",
+            "action": "route",
             "outbound": "📧 telegram"
         },
         {
             "rule_set": "🐦 twitter",
+            "action": "route",
             "outbound": "🐦 twitter"
         },
         {
             "rule_set": "🎧 Spotify",
+            "action": "route",
             "outbound": "🎧 Spotify"
         },
         {
             "clash_mode": "Global",
+            "action": "route",
             "outbound": "🌐 GLOBAL"
         },
         {
             "rule_set": "🇨🇳 cn-site",
+            "action": "route",
             "outbound": "🇨🇳 cn"
         },
         {
             "rule_set": "🇨🇳 cn-ip",
+            "action": "route",
             "outbound": "🇨🇳 cn"
         },
         {
             "rule_set": "🇨🇳 fk-!cn",
+            "action": "route",
             "outbound": "🛰 proxy"
         },
         {
             "rule_set": "🇨🇳 fk-cn",
+            "action": "route",
             "outbound": "🇨🇳 cn"
         },
         {
             "rule_set": "geolocation-!cn",
+            "action": "route",
             "outbound": "🛰 proxy"
         },
         {
@@ -169,6 +207,7 @@
                 "WeChat", "Tailscale", "wireguard-go", "Tunnelblick",
                 "softwareupdated", "kubectl"
             ],
+            "action": "route",
             "outbound": "direct"
         },
         {
@@ -176,6 +215,7 @@
                 "tun",
                 "mixed"
             ],
+            "action": "route",
             "outbound": "loop"
         }
     ],
@@ -738,14 +778,12 @@
     "inbounds": [
     {
         "tag": "tun",
-        "type": "tun",
-        "inet4_address": "172.19.0.0/30",
-        "inet6_address": "fdfe:dcba:9876::0/126",
-        "stack": "system",
+        "address": [
+            "172.19.0.0/30",
+            "fdfe:dcba:9876::0/126"
+        ],
+        "stack": "mixed",
         "auto_route": true,
-        "sniff": true,
-        "udp_timeout": "5m",
-        "sniff_override_destination": false,
         "platform": {
         "http_proxy": {
             "enabled": true,
@@ -758,8 +796,7 @@
         "tag": "mixed",
         "type": "mixed",
         "listen": "127.0.0.1",
-        "listen_port": 7890,
-        "sniff": true
+        "listen_port": 7890
     },
     {
         "tag": "loop-in",
