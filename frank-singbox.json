@@ -103,10 +103,10 @@
                 "port": 53
             },
             {
-                "protocol": "dns"
+                "protocol": "dns",
+                "action": "hijack-dns"
             }
-            ],
-            "action": "hijack-dns"
+            ]
         },
         {
             "ip_is_private": true,
