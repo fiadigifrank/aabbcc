@@ -1,16 +1,19 @@
 {
     "dns": {
+        "fakeip": {
+            "enabled": true,
+            "inet4_range": "198.18.0.0/15",
+            "inet6_range": "fc00::/18"
+        },
         "servers": [
         {
             "tag": "google",
-            "type": "tls",
-            "server": "8.8.8.8",
+            "address": "tls://8.8.8.8",
             "detour": "🛰 proxy"
         },
         {
             "tag": "tx",
-            "type": "https",
-            "server": "223.5.5.5",
+            "address": "https://223.5.5.5/dns-query",
             "detour": "direct"
         },
         {
@@ -20,14 +23,13 @@
         },
         {
             "tag": "fakeip",
-            "type": "fakeip",
-            "inet4_range": "198.18.0.0/15",
-            "inet6_range": "fc00::/18"
+            "type": "fakeip"
         }
     ],
     "rules": [
         {
             "outbound": "any",
+            "action": "route",
             "server": "tx",
             "disable_cache": true
         },
@@ -42,6 +44,10 @@
             "server": "fakeip"
         },
         {
+            "query_type": "HTTPS",
+            "action": "reject"
+        },
+        {
             "query_type": [
                 "A",
                 "AAAA"
@@ -52,6 +58,7 @@
         },
         {
             "rule_set": "geolocation-!cn",
+            "action": "route",
             "server": "google"
         },
         {
@@ -60,18 +67,21 @@
                 "WeChat", "Tailscale", "wireguard-go", "Tunnelblick",
                 "softwareupdated", "kubectl"
             ],
+            "action": "route",
             "server": "tx"
         },
         {
             "process_name": [
                 "RustDesk"
             ],
+            "action": "route",
             "server": "google"
         },
         {
             "domain": [
                 "accounts.google.com"
             ],
+            "action": "route",
             "server": "google"
         }
     ],
@@ -79,9 +89,6 @@
     "independent_cache": true
     },
     "route": {
-        "default_domain_resolver": {
-            "server": "tx"
-        },
     "rules": [
         {
             "action": "sniff",
