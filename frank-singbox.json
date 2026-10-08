@@ -1,26 +1,25 @@
 {
     "dns": {
-        "fakeip": {
-            "enabled": true,
-            "inet4_range": "198.18.0.0/15",
-            "inet6_range": "fc00::/18"
-        },
         "servers": [
-        {
-            "tag": "google",
-            "address": "tls://8.8.8.8",
-            "detour": "🛰 proxy"
-        },
-        {
-            "tag": "tx",
-            "address": "https://223.5.5.5/dns-query",
-            "detour": "direct"
-        },
-        {
-            "tag": "fakeip",
-            "address": "fakeip"
-        }
-    ],
+            {
+                "type": "tls",
+                "tag": "google",
+                "server": "8.8.8.8",
+                "detour": "🛰 proxy"
+            },
+            {
+                "type": "https",
+                "tag": "tx",
+                "server": "223.5.5.5",
+                "detour": "direct"
+            },
+            {
+                "type": "fakeip",
+                "tag": "fakeip",
+                "inet4_range": "198.18.0.0/15",
+                "inet6_range": "fc00::/18"
+            }
+        ],
     "rules": [
         {
             "outbound": "any",
