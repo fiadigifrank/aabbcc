@@ -1,4 +1,10 @@
 {
+    "http_clients": [
+        {
+            "tag": "proxy-client",
+            "detour": "🛰 proxy"
+        }
+    ],
     "dns": {
         "servers": [
             {
@@ -20,12 +26,6 @@
             }
         ],
     "rules": [
-        {
-            "outbound": "any",
-            "action": "route",
-            "server": "tx",
-            "disable_cache": true
-        },
         {
             "clash_mode": "Direct",
             "action": "route",
@@ -78,11 +78,12 @@
             "server": "google"
         }
     ],
-    "final": "google",
-    "independent_cache": true
+    "final": "google"
     },
     "route": {
-    "rules": [
+        "default_domain_resolver": "tx",
+        "default_http_client": "proxy-client",
+        "rules": [
         {
             "action": "sniff",
             "sniffer": [
@@ -224,114 +225,98 @@
             "tag": "🍎 apple",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/apple.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/apple.srs"
         },
         {
             "tag": "🇨🇳 fk-cn",
             "type": "remote",
             "format": "source",
-            "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-cn.json",
-            "download_detour": "🛰 proxy"
+            "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-cn.json"
         },
         {
             "tag": "🇨🇳 fk-!cn",
             "type": "remote",
             "format": "source",
-            "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-!cn.json",
-            "download_detour": "🛰 proxy"
+            "url": "https://raw.githubusercontent.com/fiadigifrank/aabbcc/main/sing-ruleset/fk-!cn.json"
         },
         {
             "tag": "🇨🇳 cn-site",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/cn.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/cn.srs"
         },
         {
             "tag": "🇨🇳 cn-ip",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cn.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cn.srs"
         },
         {
             "tag": "💾 Dropbox",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/dropbox.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/dropbox.srs"
         },
         {
             "tag": "🦞 Reddit",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/reddit.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/reddit.srs"
         },
         {
             "tag": "G google",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/google.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/google.srs"
         },
         {
             "tag": "📽️ Netflix",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/netflix.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/netflix.srs"
         },
         {
             "tag": "geolocation-!cn",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-!cn.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-!cn.srs"
         },
         {
             "tag": "🤖 openai",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs"
         },
         {
             "tag": "🍀 Naver",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/naver.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/naver.srs"
         },
         {
             "tag": "📧 telegram",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/telegram.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/telegram.srs"
         },
         {
             "tag": "🐦 twitter",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/twitter.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/twitter.srs"
         },
         {
             "tag": "🎞 youtube",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/youtube.srs",
-            "download_detour": "🛰 proxy"
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/youtube.srs"
         },
         {
             "tag": "🎧 Spotify",
             "type": "remote",
             "format": "binary",
-            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/spotify.srs",
-            "download_detour": "🛰 proxy"
-            }
+            "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/spotify.srs"
+        }
     ],
     "final": "🛰 proxy",
     "auto_detect_interface": true
